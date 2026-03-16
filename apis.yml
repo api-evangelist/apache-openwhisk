@@ -1,0 +1,35 @@
+aid: apache-openwhisk
+name: Apache OpenWhisk
+description: >-
+  Apache OpenWhisk is an open-source serverless cloud platform that executes functions in response to events at any scale. It supports multiple programming languages and provides a rich programming model for creating serverless APIs and event-driven applications.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Serverless
+  - FaaS
+  - Event-Driven
+  - Cloud Native
+created: '2026-03-16'
+modified: '2026-03-16'
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/apache-openwhisk/refs/heads/main/apis.yml
+specificationVersion: '0.19'
+apis:
+  - aid: apache-openwhisk:apache-openwhisk-rest-api
+    name: Apache OpenWhisk REST API
+    description: >-
+      The OpenWhisk API provides REST endpoints for managing actions, triggers, rules, packages, and activations, supporting serverless function development in JavaScript, Python, Swift, Java, Go, PHP, and custom Docker runtimes.
+    humanURL: https://openwhisk.apache.org/documentation.html
+    tags:
+      - REST
+      - Serverless
+      - FaaS
+      - Functions
+    properties:
+      - type: Documentation
+        url: https://openwhisk.apache.org/documentation.html
+maintainers:
+  - FN: Kin Lane
+    email: info@apievangelist.com
