@@ -7,10 +7,10 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Serverless
-  - FaaS
-  - Event-Driven
   - Cloud Native
+  - Event-Driven
+  - FaaS
+  - Serverless
 created: '2026-03-16'
 modified: '2026-03-16'
 url: >-
@@ -23,10 +23,10 @@ apis:
       The OpenWhisk API provides REST endpoints for managing actions, triggers, rules, packages, and activations, supporting serverless function development in JavaScript, Python, Swift, Java, Go, PHP, and custom Docker runtimes.
     humanURL: https://openwhisk.apache.org/documentation.html
     tags:
-      - REST
-      - Serverless
       - FaaS
       - Functions
+      - REST
+      - Serverless
     properties:
       - type: Documentation
         url: https://openwhisk.apache.org/documentation.html
