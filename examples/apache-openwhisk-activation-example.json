@@ -1,0 +1,17 @@
+{
+  "activationId": "44794bd6aab74415",
+  "namespace": "hello",
+  "name": "hello",
+  "version": "0.0.1",
+  "subject": "example",
+  "start": 1234,
+  "end": 1234,
+  "duration": 1234,
+  "response": {},
+  "logs": [
+    "example"
+  ],
+  "annotations": [
+    {}
+  ]
+}

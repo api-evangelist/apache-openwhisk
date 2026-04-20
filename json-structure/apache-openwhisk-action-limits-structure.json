@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-openwhisk/refs/heads/main/json-structure/apache-openwhisk-action-limits-structure.json",
+  "description": "ActionLimits schema from Apache OpenWhisk",
+  "type": "object",
+  "properties": {
+    "timeout": {
+      "type": "int32",
+      "description": "Timeout in milliseconds",
+      "example": 60000
+    },
+    "memory": {
+      "type": "int32",
+      "description": "Memory in MB",
+      "example": 256
+    },
+    "logs": {
+      "type": "int32",
+      "description": "Log size limit in MB",
+      "example": 10
+    }
+  },
+  "name": "ActionLimits"
+}

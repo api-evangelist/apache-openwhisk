@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-openwhisk/refs/heads/main/json-structure/apache-openwhisk-namespace-limits-structure.json",
+  "description": "NamespaceLimits schema from Apache OpenWhisk",
+  "type": "object",
+  "properties": {
+    "concurrency": {
+      "type": "int32",
+      "description": "Maximum concurrent activations",
+      "example": 1000
+    },
+    "minuteRate": {
+      "type": "int32",
+      "description": "Actions per minute limit",
+      "example": 600
+    },
+    "hourRate": {
+      "type": "int32",
+      "description": "Actions per hour limit",
+      "example": 36000
+    }
+  },
+  "name": "NamespaceLimits"
+}

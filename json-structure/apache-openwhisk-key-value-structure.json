@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-openwhisk/refs/heads/main/json-structure/apache-openwhisk-key-value-structure.json",
+  "description": "KeyValue schema from Apache OpenWhisk",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Parameter key",
+      "example": "name"
+    },
+    "value": {
+      "description": "Parameter value",
+      "example": "World"
+    }
+  },
+  "name": "KeyValue"
+}

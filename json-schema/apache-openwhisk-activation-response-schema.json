@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-openwhisk/refs/heads/main/json-schema/apache-openwhisk-activation-response-schema.json",
+  "title": "ActivationResponse",
+  "description": "ActivationResponse schema from Apache OpenWhisk",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "Activation status",
+      "example": "success",
+      "enum": [
+        "success",
+        "application error",
+        "developer error",
+        "whisk internal error"
+      ]
+    },
+    "statusCode": {
+      "type": "integer",
+      "description": "HTTP status code equivalent",
+      "example": 0
+    },
+    "success": {
+      "type": "boolean",
+      "example": true
+    },
+    "result": {
+      "type": "object",
+      "description": "Action result payload"
+    }
+  }
+}

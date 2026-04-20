@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-openwhisk/refs/heads/main/json-schema/apache-openwhisk-action-schema.json",
+  "title": "Action",
+  "description": "Action schema from Apache OpenWhisk",
+  "type": "object",
+  "properties": {
+    "namespace": {
+      "type": "string",
+      "description": "Namespace owning the action",
+      "example": "guest"
+    },
+    "name": {
+      "type": "string",
+      "description": "Action name",
+      "example": "hello"
+    },
+    "version": {
+      "type": "string",
+      "description": "Action version",
+      "example": "0.0.1"
+    },
+    "publish": {
+      "type": "boolean",
+      "description": "Whether the action is public",
+      "example": false
+    },
+    "exec": {
+      "$ref": "#/components/schemas/ActionExec"
+    },
+    "annotations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/KeyValue"
+      }
+    },
+    "parameters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/KeyValue"
+      }
+    },
+    "limits": {
+      "$ref": "#/components/schemas/ActionLimits"
+    },
+    "updated": {
+      "type": "integer",
+      "description": "Last update timestamp (epoch ms)",
+      "example": 1718153645993
+    }
+  }
+}

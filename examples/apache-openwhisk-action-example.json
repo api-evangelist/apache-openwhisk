@@ -1,0 +1,15 @@
+{
+  "namespace": "hello",
+  "name": "hello",
+  "version": "0.0.1",
+  "publish": true,
+  "exec": {},
+  "annotations": [
+    {}
+  ],
+  "parameters": [
+    {}
+  ],
+  "limits": {},
+  "updated": 1234
+}

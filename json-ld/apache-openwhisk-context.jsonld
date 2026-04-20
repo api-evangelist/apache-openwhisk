@@ -1,0 +1,174 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "ow": "https://openwhisk.apache.org/schema/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "KeyValue": "ow:KeyValue",
+    "ActionExec": "ow:ActionExec",
+    "Action": "ow:Action",
+    "ActionRequest": "ow:ActionRequest",
+    "ActionLimits": "ow:ActionLimits",
+    "Trigger": "ow:Trigger",
+    "TriggerRequest": "ow:TriggerRequest",
+    "Rule": "ow:Rule",
+    "RuleRequest": "ow:RuleRequest",
+    "Package": "ow:Package",
+    "PackageRequest": "ow:PackageRequest",
+    "EntityRef": "ow:EntityRef",
+    "Activation": "ow:Activation",
+    "ActivationResponse": "ow:ActivationResponse",
+    "ActivationRef": "ow:ActivationRef",
+    "ActivationSummary": "ow:ActivationSummary",
+    "NamespaceEntities": "ow:NamespaceEntities",
+    "NamespaceLimits": "ow:NamespaceLimits",
+    "key": {
+      "@id": "ow:key",
+      "@type": "xsd:string"
+    },
+    "value": {
+      "@id": "ow:value",
+      "@type": "xsd:string"
+    },
+    "kind": {
+      "@id": "ow:kind",
+      "@type": "xsd:string"
+    },
+    "code": {
+      "@id": "ow:code",
+      "@type": "xsd:string"
+    },
+    "image": {
+      "@id": "ow:image",
+      "@type": "xsd:string"
+    },
+    "components": {
+      "@id": "ow:components",
+      "@container": "@set"
+    },
+    "namespace": {
+      "@id": "ow:namespace",
+      "@type": "schema:name"
+    },
+    "name": {
+      "@id": "ow:name",
+      "@type": "schema:name"
+    },
+    "version": {
+      "@id": "ow:version",
+      "@type": "xsd:string"
+    },
+    "publish": {
+      "@id": "ow:publish",
+      "@type": "xsd:boolean"
+    },
+    "exec": {
+      "@id": "ow:exec",
+      "@type": "xsd:string"
+    },
+    "annotations": {
+      "@id": "ow:annotations",
+      "@container": "@set"
+    },
+    "parameters": {
+      "@id": "ow:parameters",
+      "@container": "@set"
+    },
+    "limits": {
+      "@id": "ow:limits",
+      "@type": "xsd:string"
+    },
+    "updated": {
+      "@id": "ow:updated",
+      "@type": "xsd:integer"
+    },
+    "timeout": {
+      "@id": "ow:timeout",
+      "@type": "xsd:integer"
+    },
+    "memory": {
+      "@id": "ow:memory",
+      "@type": "xsd:integer"
+    },
+    "logs": {
+      "@id": "ow:logs",
+      "@type": "xsd:integer"
+    },
+    "status": {
+      "@id": "ow:status",
+      "@type": "xsd:string"
+    },
+    "trigger": {
+      "@id": "ow:trigger",
+      "@type": "xsd:string"
+    },
+    "action": {
+      "@id": "ow:action",
+      "@type": "xsd:string"
+    },
+    "actions": {
+      "@id": "ow:actions",
+      "@container": "@set"
+    },
+    "feeds": {
+      "@id": "ow:feeds",
+      "@container": "@set"
+    },
+    "activationId": {
+      "@id": "ow:activationId",
+      "@type": "xsd:string"
+    },
+    "subject": {
+      "@id": "ow:subject",
+      "@type": "xsd:string"
+    },
+    "start": {
+      "@id": "ow:start",
+      "@type": "xsd:integer"
+    },
+    "end": {
+      "@id": "ow:end",
+      "@type": "xsd:integer"
+    },
+    "duration": {
+      "@id": "ow:duration",
+      "@type": "xsd:integer"
+    },
+    "response": {
+      "@id": "ow:response",
+      "@type": "xsd:string"
+    },
+    "statusCode": {
+      "@id": "ow:statusCode",
+      "@type": "xsd:integer"
+    },
+    "success": {
+      "@id": "ow:success",
+      "@type": "xsd:boolean"
+    },
+    "result": {
+      "@id": "ow:result",
+      "@type": "xsd:string"
+    },
+    "triggers": {
+      "@id": "ow:triggers",
+      "@container": "@set"
+    },
+    "rules": {
+      "@id": "ow:rules",
+      "@container": "@set"
+    },
+    "concurrency": {
+      "@id": "ow:concurrency",
+      "@type": "xsd:integer"
+    },
+    "minuteRate": {
+      "@id": "ow:minuteRate",
+      "@type": "xsd:integer"
+    },
+    "hourRate": {
+      "@id": "ow:hourRate",
+      "@type": "xsd:integer"
+    }
+  }
+}

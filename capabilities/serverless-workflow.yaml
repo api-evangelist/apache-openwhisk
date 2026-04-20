@@ -1,0 +1,170 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Apache OpenWhisk Serverless Workflow"
+  description: "Unified workflow capability for deploying and managing serverless functions, event triggers, rules, and activations in Apache OpenWhisk."
+  tags:
+    - Apache OpenWhisk
+    - Serverless
+    - Functions As A Service
+    - Event Driven
+    - Cloud Native
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      OPENWHISK_AUTH_USER: OPENWHISK_AUTH_USER
+      OPENWHISK_AUTH_PASS: OPENWHISK_AUTH_PASS
+
+capability:
+  consumes:
+    - import: openwhisk
+      location: ./shared/openwhisk-rest-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: serverless-api
+      description: "Unified REST API for OpenWhisk serverless management."
+      resources:
+        - path: /v1/actions
+          name: actions
+          description: "Serverless function actions"
+          operations:
+            - method: GET
+              name: list-actions
+              description: "List all actions"
+              call: "openwhisk.listActions"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: invoke-action
+              description: "Invoke an action"
+              call: "openwhisk.invokeAction"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/triggers
+          name: triggers
+          description: "Event triggers"
+          operations:
+            - method: GET
+              name: list-triggers
+              description: "List triggers"
+              call: "openwhisk.listTriggers"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/activations
+          name: activations
+          description: "Activation history"
+          operations:
+            - method: GET
+              name: list-activations
+              description: "List activations"
+              call: "openwhisk.listActivations"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/packages
+          name: packages
+          description: "Action packages"
+          operations:
+            - method: GET
+              name: list-packages
+              description: "List packages"
+              call: "openwhisk.listPackages"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: serverless-mcp
+      transport: http
+      description: "MCP server for AI-assisted serverless function management."
+      tools:
+        - name: list-actions
+          description: "List all serverless functions/actions"
+          hints:
+            readOnly: true
+          call: "openwhisk.listActions"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: invoke-action
+          description: "Invoke a serverless action/function"
+          hints:
+            readOnly: false
+          call: "openwhisk.invokeAction"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-action
+          description: "Create a new serverless action"
+          hints:
+            readOnly: false
+          call: "openwhisk.createOrUpdateAction"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-action
+          description: "Delete a serverless action"
+          hints:
+            readOnly: false
+            destructive: true
+          call: "openwhisk.deleteAction"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-triggers
+          description: "List all event triggers"
+          hints:
+            readOnly: true
+          call: "openwhisk.listTriggers"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: fire-trigger
+          description: "Fire an event trigger"
+          hints:
+            readOnly: false
+          call: "openwhisk.fireTrigger"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-rules
+          description: "List all trigger-to-action rules"
+          hints:
+            readOnly: true
+          call: "openwhisk.listRules"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-packages
+          description: "List all action packages"
+          hints:
+            readOnly: true
+          call: "openwhisk.listPackages"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-activations
+          description: "List activation history"
+          hints:
+            readOnly: true
+          call: "openwhisk.listActivations"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-activation
+          description: "Get details of a specific activation"
+          hints:
+            readOnly: true
+          call: "openwhisk.getActivation"
+          outputParameters:
+            - type: object
+              mapping: "$."

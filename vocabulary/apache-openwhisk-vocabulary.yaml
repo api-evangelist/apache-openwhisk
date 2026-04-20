@@ -1,0 +1,73 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Apache OpenWhisk"
+  description: "Vocabulary taxonomy for Apache OpenWhisk serverless platform REST API"
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: openwhisk
+      version: "1.0.0"
+      baseUrl: "https://localhost:443/api/v1"
+      status: active
+  resources:
+    - name: actions
+      api: openwhisk
+      actions: [list, get, create, update, invoke, delete]
+    - name: triggers
+      api: openwhisk
+      actions: [list, get, create, update, fire, delete]
+    - name: rules
+      api: openwhisk
+      actions: [list, get, create, update, enable, disable, delete]
+    - name: packages
+      api: openwhisk
+      actions: [list, get, create, update, delete]
+    - name: activations
+      api: openwhisk
+      actions: [list, get]
+    - name: namespaces
+      api: openwhisk
+      actions: [list, get, limits]
+  authentication:
+    schemes:
+      - type: basic
+        description: "HTTP Basic Auth with OpenWhisk credentials"
+
+capability:
+  workflows:
+    - name: Serverless Workflow
+      file: capabilities/serverless-workflow.yaml
+      apis: [openwhisk]
+      tools: 10
+      personas: [DevOps Engineer, Backend Developer, Platform Administrator]
+  personas:
+    - id: devops-engineer
+      name: DevOps Engineer
+      description: "Manages serverless deployments and CI/CD pipelines"
+    - id: backend-developer
+      name: Backend Developer
+      description: "Builds event-driven applications using serverless functions"
+    - id: platform-admin
+      name: Platform Administrator
+      description: "Manages namespaces, limits, and platform configuration"
+  domains:
+    - Serverless Computing
+    - Functions As A Service
+    - Event-Driven Architecture
+
+crossReference:
+  - resource: actions
+    operations: [list, invoke, create, delete]
+    workflows: [Serverless Workflow]
+    personas: [Backend Developer, DevOps Engineer]
+  - resource: triggers
+    operations: [list, fire, create]
+    workflows: [Serverless Workflow]
+    personas: [Backend Developer]
+  - resource: activations
+    operations: [list, get]
+    workflows: [Serverless Workflow]
+    personas: [DevOps Engineer, Platform Administrator]

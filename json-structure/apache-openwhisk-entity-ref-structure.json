@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-openwhisk/refs/heads/main/json-structure/apache-openwhisk-entity-ref-structure.json",
+  "description": "EntityRef schema from Apache OpenWhisk",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Entity name",
+      "example": "hello"
+    },
+    "annotations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/KeyValue"
+      }
+    }
+  },
+  "name": "EntityRef"
+}

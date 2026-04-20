@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-openwhisk/refs/heads/main/json-structure/apache-openwhisk-action-exec-structure.json",
+  "description": "ActionExec schema from Apache OpenWhisk",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "description": "Runtime kind",
+      "example": "nodejs:18",
+      "enum": [
+        "nodejs:18",
+        "nodejs:20",
+        "python:3",
+        "java:8",
+        "go:1.20",
+        "php:8.0",
+        "ruby:2.5",
+        "swift:5.7",
+        "dotnet:2.2",
+        "docker",
+        "blackbox",
+        "sequence"
+      ]
+    },
+    "code": {
+      "type": "string",
+      "description": "Inline function source code",
+      "example": "function main(params) { return { message: 'Hello ' + (params.name || 'World') }; }"
+    },
+    "image": {
+      "type": "string",
+      "description": "Docker image for blackbox/docker kind",
+      "example": "openwhisk/nodejs18action"
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Sequence of action names (for sequence kind)"
+    }
+  },
+  "name": "ActionExec"
+}

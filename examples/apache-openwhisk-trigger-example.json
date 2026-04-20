@@ -1,0 +1,13 @@
+{
+  "namespace": "hello",
+  "name": "hello",
+  "version": "0.0.1",
+  "publish": true,
+  "annotations": [
+    {}
+  ],
+  "parameters": [
+    {}
+  ],
+  "updated": 1234
+}

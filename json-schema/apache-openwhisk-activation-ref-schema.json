@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-openwhisk/refs/heads/main/json-schema/apache-openwhisk-activation-ref-schema.json",
+  "title": "ActivationRef",
+  "description": "ActivationRef schema from Apache OpenWhisk",
+  "type": "object",
+  "properties": {
+    "activationId": {
+      "type": "string",
+      "description": "Activation identifier for async invocations",
+      "example": "44794bd6aab74415b4e42a308d880727"
+    }
+  }
+}

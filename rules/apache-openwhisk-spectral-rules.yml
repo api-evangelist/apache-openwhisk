@@ -1,0 +1,75 @@
+extends: "spectral:oas"
+rules:
+  info-title-required:
+    description: "API must have a title"
+    severity: error
+    given: "$.info"
+    then:
+      field: title
+      function: truthy
+  operation-summary-required:
+    description: "Operations must have summaries"
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: summary
+      function: truthy
+  operation-operationId-required:
+    description: "Operations must have operationIds"
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: operationId
+      function: truthy
+  operation-tags-required:
+    description: "Operations must have tags"
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: truthy
+  operation-summary-apache-prefix:
+    description: "Summaries should start with Apache OpenWhisk"
+    severity: info
+    given: "$.paths[*][get,post,put,delete,patch].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Apache OpenWhisk"
+  paths-api-versioned:
+    description: "Paths should be versioned under /api/v1"
+    severity: info
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "/api/v1$"
+  security-basic-auth:
+    description: "API should use HTTP Basic authentication"
+    severity: warn
+    given: "$.components.securitySchemes"
+    then:
+      function: truthy
+  response-success-required:
+    description: "Operations must have a 200 success response"
+    severity: error
+    given: "$.paths[*][get,post,put].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          required: ["200"]
+  schema-properties-described:
+    description: "Schema properties should have descriptions"
+    severity: info
+    given: "$.components.schemas[*].properties[*]"
+    then:
+      field: description
+      function: truthy
+  operation-parameters-described:
+    description: "Parameters should have descriptions"
+    severity: warn
+    given: "$.paths[*][*].parameters[*]"
+    then:
+      field: description
+      function: truthy

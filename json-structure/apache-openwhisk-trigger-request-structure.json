@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-openwhisk/refs/heads/main/json-structure/apache-openwhisk-trigger-request-structure.json",
+  "description": "TriggerRequest schema from Apache OpenWhisk",
+  "type": "object",
+  "properties": {
+    "annotations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/KeyValue"
+      }
+    },
+    "parameters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/KeyValue"
+      }
+    }
+  },
+  "name": "TriggerRequest"
+}

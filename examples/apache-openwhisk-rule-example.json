@@ -1,0 +1,9 @@
+{
+  "namespace": "hello",
+  "name": "hello",
+  "version": "0.0.1",
+  "status": "active",
+  "trigger": "example",
+  "action": "example",
+  "updated": 1234
+}

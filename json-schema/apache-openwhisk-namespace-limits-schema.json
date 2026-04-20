@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-openwhisk/refs/heads/main/json-schema/apache-openwhisk-namespace-limits-schema.json",
+  "title": "NamespaceLimits",
+  "description": "NamespaceLimits schema from Apache OpenWhisk",
+  "type": "object",
+  "properties": {
+    "concurrency": {
+      "type": "integer",
+      "description": "Maximum concurrent activations",
+      "example": 1000
+    },
+    "minuteRate": {
+      "type": "integer",
+      "description": "Actions per minute limit",
+      "example": 600
+    },
+    "hourRate": {
+      "type": "integer",
+      "description": "Actions per hour limit",
+      "example": 36000
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-openwhisk/refs/heads/main/json-structure/apache-openwhisk-namespace-entities-structure.json",
+  "description": "NamespaceEntities schema from Apache OpenWhisk",
+  "type": "object",
+  "properties": {
+    "actions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/EntityRef"
+      }
+    },
+    "triggers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/EntityRef"
+      }
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/EntityRef"
+      }
+    }
+  },
+  "name": "NamespaceEntities"
+}

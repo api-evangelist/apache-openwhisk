@@ -1,0 +1,8 @@
+{
+  "kind": "nodejs:18",
+  "code": "example",
+  "image": "example",
+  "components": [
+    "example"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-openwhisk/refs/heads/main/json-schema/apache-openwhisk-action-request-schema.json",
+  "title": "ActionRequest",
+  "description": "ActionRequest schema from Apache OpenWhisk",
+  "type": "object",
+  "properties": {
+    "exec": {
+      "$ref": "#/components/schemas/ActionExec"
+    },
+    "annotations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/KeyValue"
+      }
+    },
+    "parameters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/KeyValue"
+      }
+    },
+    "limits": {
+      "$ref": "#/components/schemas/ActionLimits"
+    }
+  },
+  "required": [
+    "exec"
+  ]
+}

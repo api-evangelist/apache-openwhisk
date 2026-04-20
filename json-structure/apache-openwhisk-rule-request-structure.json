@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-openwhisk/refs/heads/main/json-structure/apache-openwhisk-rule-request-structure.json",
+  "description": "RuleRequest schema from Apache OpenWhisk",
+  "type": "object",
+  "properties": {
+    "trigger": {
+      "type": "string",
+      "description": "Trigger name to associate",
+      "example": "/guest/myTrigger"
+    },
+    "action": {
+      "type": "string",
+      "description": "Action name to invoke",
+      "example": "/guest/hello"
+    }
+  },
+  "required": [
+    "trigger",
+    "action"
+  ],
+  "name": "RuleRequest"
+}
