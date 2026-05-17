@@ -54,7 +54,7 @@ common:
   url: vocabulary/apache-openwhisk-vocabulary.yaml
 - type: NaftikoCapability
   url: capabilities/serverless-workflow.yaml
-- type: JSON-LD
+- type: JSONLD
   url: json-ld/apache-openwhisk-context.jsonld
 - type: Features
   data:
