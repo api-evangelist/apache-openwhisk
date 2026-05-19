@@ -1,0 +1,140 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache OpenWhisk REST API — Activations
+  description: 'Apache OpenWhisk REST API — Activations. 2 operations. Lead operation: Apache OpenWhisk List Activations.
+    Self-contained Naftiko capability covering one Apache Openwhisk business surface.'
+  tags:
+  - Apache Openwhisk
+  - Activations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APACHE_OPENWHISK_API_KEY: APACHE_OPENWHISK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-activations
+    baseUri: https://{host}/api/v1
+    description: Apache OpenWhisk REST API — Activations business capability. Self-contained, no shared references.
+    resources:
+    - name: namespaces-namespace-activations
+      path: /namespaces/{namespace}/activations
+      operations:
+      - name: listactivations
+        method: GET
+        description: Apache OpenWhisk List Activations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of activations to return
+        - name: skip
+          in: query
+          type: integer
+          description: Number of activations to skip
+        - name: since
+          in: query
+          type: integer
+          description: Return activations since this epoch milliseconds timestamp
+        - name: upto
+          in: query
+          type: integer
+          description: Return activations up to this epoch milliseconds timestamp
+    - name: namespaces-namespace-activations-activationId
+      path: /namespaces/{namespace}/activations/{activationId}
+      operations:
+      - name: getactivation
+        method: GET
+        description: Apache OpenWhisk Get Activation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: activationId
+          in: path
+          type: string
+          description: Activation identifier
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.APACHE_OPENWHISK_USER}}'
+      password: '{{env.APACHE_OPENWHISK_PASS}}'
+  exposes:
+  - type: rest
+    namespace: rest-activations-rest
+    port: 8080
+    description: REST adapter for Apache OpenWhisk REST API — Activations. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/namespaces/{namespace}/activations
+      name: namespaces-namespace-activations
+      description: REST surface for namespaces-namespace-activations.
+      operations:
+      - method: GET
+        name: listactivations
+        description: Apache OpenWhisk List Activations
+        call: rest-activations.listactivations
+        with:
+          limit: rest.limit
+          skip: rest.skip
+          since: rest.since
+          upto: rest.upto
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/namespaces/{namespace}/activations/{activationid}
+      name: namespaces-namespace-activations-activationid
+      description: REST surface for namespaces-namespace-activations-activationId.
+      operations:
+      - method: GET
+        name: getactivation
+        description: Apache OpenWhisk Get Activation
+        call: rest-activations.getactivation
+        with:
+          activationId: rest.activationId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-activations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache OpenWhisk REST API — Activations. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apache-openwhisk-list-activations
+      description: Apache OpenWhisk List Activations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-activations.listactivations
+      with:
+        limit: tools.limit
+        skip: tools.skip
+        since: tools.since
+        upto: tools.upto
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-openwhisk-get-activation
+      description: Apache OpenWhisk Get Activation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-activations.getactivation
+      with:
+        activationId: tools.activationId
+      outputParameters:
+      - type: object
+        mapping: $.

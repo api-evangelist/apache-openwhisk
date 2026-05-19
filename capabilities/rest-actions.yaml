@@ -1,0 +1,231 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache OpenWhisk REST API — Actions
+  description: 'Apache OpenWhisk REST API — Actions. 5 operations. Lead operation: Apache OpenWhisk List Actions. Self-contained
+    Naftiko capability covering one Apache Openwhisk business surface.'
+  tags:
+  - Apache Openwhisk
+  - Actions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APACHE_OPENWHISK_API_KEY: APACHE_OPENWHISK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-actions
+    baseUri: https://{host}/api/v1
+    description: Apache OpenWhisk REST API — Actions business capability. Self-contained, no shared references.
+    resources:
+    - name: namespaces-namespace-actions
+      path: /namespaces/{namespace}/actions
+      operations:
+      - name: listactions
+        method: GET
+        description: Apache OpenWhisk List Actions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of actions to return
+        - name: skip
+          in: query
+          type: integer
+          description: Number of actions to skip
+    - name: namespaces-namespace-actions-actionName
+      path: /namespaces/{namespace}/actions/{actionName}
+      operations:
+      - name: getaction
+        method: GET
+        description: Apache OpenWhisk Get Action
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createorupdateaction
+        method: PUT
+        description: Apache OpenWhisk Create or Update Action
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: overwrite
+          in: query
+          type: boolean
+          description: Whether to overwrite an existing action
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: invokeaction
+        method: POST
+        description: Apache OpenWhisk Invoke Action
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: blocking
+          in: query
+          type: boolean
+          description: Block and wait for result
+        - name: result
+          in: query
+          type: boolean
+          description: Return only the result field
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deleteaction
+        method: DELETE
+        description: Apache OpenWhisk Delete Action
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.APACHE_OPENWHISK_USER}}'
+      password: '{{env.APACHE_OPENWHISK_PASS}}'
+  exposes:
+  - type: rest
+    namespace: rest-actions-rest
+    port: 8080
+    description: REST adapter for Apache OpenWhisk REST API — Actions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/namespaces/{namespace}/actions
+      name: namespaces-namespace-actions
+      description: REST surface for namespaces-namespace-actions.
+      operations:
+      - method: GET
+        name: listactions
+        description: Apache OpenWhisk List Actions
+        call: rest-actions.listactions
+        with:
+          limit: rest.limit
+          skip: rest.skip
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/namespaces/{namespace}/actions/{actionname}
+      name: namespaces-namespace-actions-actionname
+      description: REST surface for namespaces-namespace-actions-actionName.
+      operations:
+      - method: GET
+        name: getaction
+        description: Apache OpenWhisk Get Action
+        call: rest-actions.getaction
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: createorupdateaction
+        description: Apache OpenWhisk Create or Update Action
+        call: rest-actions.createorupdateaction
+        with:
+          overwrite: rest.overwrite
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: invokeaction
+        description: Apache OpenWhisk Invoke Action
+        call: rest-actions.invokeaction
+        with:
+          blocking: rest.blocking
+          result: rest.result
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteaction
+        description: Apache OpenWhisk Delete Action
+        call: rest-actions.deleteaction
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-actions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache OpenWhisk REST API — Actions. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apache-openwhisk-list-actions
+      description: Apache OpenWhisk List Actions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-actions.listactions
+      with:
+        limit: tools.limit
+        skip: tools.skip
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-openwhisk-get-action
+      description: Apache OpenWhisk Get Action
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-actions.getaction
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-openwhisk-create-update-action
+      description: Apache OpenWhisk Create or Update Action
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-actions.createorupdateaction
+      with:
+        overwrite: tools.overwrite
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-openwhisk-invoke-action
+      description: Apache OpenWhisk Invoke Action
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-actions.invokeaction
+      with:
+        blocking: tools.blocking
+        result: tools.result
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-openwhisk-delete-action
+      description: Apache OpenWhisk Delete Action
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-actions.deleteaction
+      outputParameters:
+      - type: object
+        mapping: $.

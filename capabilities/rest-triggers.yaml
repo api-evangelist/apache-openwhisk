@@ -1,0 +1,207 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache OpenWhisk REST API — Triggers
+  description: 'Apache OpenWhisk REST API — Triggers. 5 operations. Lead operation: Apache OpenWhisk List Triggers. Self-contained
+    Naftiko capability covering one Apache Openwhisk business surface.'
+  tags:
+  - Apache Openwhisk
+  - Triggers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APACHE_OPENWHISK_API_KEY: APACHE_OPENWHISK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-triggers
+    baseUri: https://{host}/api/v1
+    description: Apache OpenWhisk REST API — Triggers business capability. Self-contained, no shared references.
+    resources:
+    - name: namespaces-namespace-triggers
+      path: /namespaces/{namespace}/triggers
+      operations:
+      - name: listtriggers
+        method: GET
+        description: Apache OpenWhisk List Triggers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of triggers to return
+    - name: namespaces-namespace-triggers-triggerName
+      path: /namespaces/{namespace}/triggers/{triggerName}
+      operations:
+      - name: gettrigger
+        method: GET
+        description: Apache OpenWhisk Get Trigger
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createorupdatetrigger
+        method: PUT
+        description: Apache OpenWhisk Create or Update Trigger
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: firetrigger
+        method: POST
+        description: Apache OpenWhisk Fire Trigger
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deletetrigger
+        method: DELETE
+        description: Apache OpenWhisk Delete Trigger
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.APACHE_OPENWHISK_USER}}'
+      password: '{{env.APACHE_OPENWHISK_PASS}}'
+  exposes:
+  - type: rest
+    namespace: rest-triggers-rest
+    port: 8080
+    description: REST adapter for Apache OpenWhisk REST API — Triggers. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/namespaces/{namespace}/triggers
+      name: namespaces-namespace-triggers
+      description: REST surface for namespaces-namespace-triggers.
+      operations:
+      - method: GET
+        name: listtriggers
+        description: Apache OpenWhisk List Triggers
+        call: rest-triggers.listtriggers
+        with:
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/namespaces/{namespace}/triggers/{triggername}
+      name: namespaces-namespace-triggers-triggername
+      description: REST surface for namespaces-namespace-triggers-triggerName.
+      operations:
+      - method: GET
+        name: gettrigger
+        description: Apache OpenWhisk Get Trigger
+        call: rest-triggers.gettrigger
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: createorupdatetrigger
+        description: Apache OpenWhisk Create or Update Trigger
+        call: rest-triggers.createorupdatetrigger
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: firetrigger
+        description: Apache OpenWhisk Fire Trigger
+        call: rest-triggers.firetrigger
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletetrigger
+        description: Apache OpenWhisk Delete Trigger
+        call: rest-triggers.deletetrigger
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-triggers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache OpenWhisk REST API — Triggers. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apache-openwhisk-list-triggers
+      description: Apache OpenWhisk List Triggers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-triggers.listtriggers
+      with:
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-openwhisk-get-trigger
+      description: Apache OpenWhisk Get Trigger
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-triggers.gettrigger
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-openwhisk-create-update-trigger
+      description: Apache OpenWhisk Create or Update Trigger
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-triggers.createorupdatetrigger
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-openwhisk-fire-trigger
+      description: Apache OpenWhisk Fire Trigger
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-triggers.firetrigger
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-openwhisk-delete-trigger
+      description: Apache OpenWhisk Delete Trigger
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-triggers.deletetrigger
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,198 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache OpenWhisk REST API — Rules
+  description: 'Apache OpenWhisk REST API — Rules. 5 operations. Lead operation: Apache OpenWhisk List Rules. Self-contained
+    Naftiko capability covering one Apache Openwhisk business surface.'
+  tags:
+  - Apache Openwhisk
+  - Rules
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APACHE_OPENWHISK_API_KEY: APACHE_OPENWHISK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-rules
+    baseUri: https://{host}/api/v1
+    description: Apache OpenWhisk REST API — Rules business capability. Self-contained, no shared references.
+    resources:
+    - name: namespaces-namespace-rules
+      path: /namespaces/{namespace}/rules
+      operations:
+      - name: listrules
+        method: GET
+        description: Apache OpenWhisk List Rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: namespaces-namespace-rules-ruleName
+      path: /namespaces/{namespace}/rules/{ruleName}
+      operations:
+      - name: getrule
+        method: GET
+        description: Apache OpenWhisk Get Rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createorupdaterule
+        method: PUT
+        description: Apache OpenWhisk Create or Update Rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: updaterulestatus
+        method: POST
+        description: Apache OpenWhisk Update Rule Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleterule
+        method: DELETE
+        description: Apache OpenWhisk Delete Rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.APACHE_OPENWHISK_USER}}'
+      password: '{{env.APACHE_OPENWHISK_PASS}}'
+  exposes:
+  - type: rest
+    namespace: rest-rules-rest
+    port: 8080
+    description: REST adapter for Apache OpenWhisk REST API — Rules. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/namespaces/{namespace}/rules
+      name: namespaces-namespace-rules
+      description: REST surface for namespaces-namespace-rules.
+      operations:
+      - method: GET
+        name: listrules
+        description: Apache OpenWhisk List Rules
+        call: rest-rules.listrules
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/namespaces/{namespace}/rules/{rulename}
+      name: namespaces-namespace-rules-rulename
+      description: REST surface for namespaces-namespace-rules-ruleName.
+      operations:
+      - method: GET
+        name: getrule
+        description: Apache OpenWhisk Get Rule
+        call: rest-rules.getrule
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: createorupdaterule
+        description: Apache OpenWhisk Create or Update Rule
+        call: rest-rules.createorupdaterule
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: updaterulestatus
+        description: Apache OpenWhisk Update Rule Status
+        call: rest-rules.updaterulestatus
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleterule
+        description: Apache OpenWhisk Delete Rule
+        call: rest-rules.deleterule
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-rules-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache OpenWhisk REST API — Rules. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apache-openwhisk-list-rules
+      description: Apache OpenWhisk List Rules
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-rules.listrules
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-openwhisk-get-rule
+      description: Apache OpenWhisk Get Rule
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-rules.getrule
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-openwhisk-create-update-rule
+      description: Apache OpenWhisk Create or Update Rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-rules.createorupdaterule
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-openwhisk-update-rule-status
+      description: Apache OpenWhisk Update Rule Status
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-rules.updaterulestatus
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-openwhisk-delete-rule
+      description: Apache OpenWhisk Delete Rule
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-rules.deleterule
+      outputParameters:
+      - type: object
+        mapping: $.

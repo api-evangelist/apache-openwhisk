@@ -1,0 +1,163 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache OpenWhisk REST API — Packages
+  description: 'Apache OpenWhisk REST API — Packages. 4 operations. Lead operation: Apache OpenWhisk List Packages. Self-contained
+    Naftiko capability covering one Apache Openwhisk business surface.'
+  tags:
+  - Apache Openwhisk
+  - Packages
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APACHE_OPENWHISK_API_KEY: APACHE_OPENWHISK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-packages
+    baseUri: https://{host}/api/v1
+    description: Apache OpenWhisk REST API — Packages business capability. Self-contained, no shared references.
+    resources:
+    - name: namespaces-namespace-packages
+      path: /namespaces/{namespace}/packages
+      operations:
+      - name: listpackages
+        method: GET
+        description: Apache OpenWhisk List Packages
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: namespaces-namespace-packages-packageName
+      path: /namespaces/{namespace}/packages/{packageName}
+      operations:
+      - name: getpackage
+        method: GET
+        description: Apache OpenWhisk Get Package
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createorupdatepackage
+        method: PUT
+        description: Apache OpenWhisk Create or Update Package
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletepackage
+        method: DELETE
+        description: Apache OpenWhisk Delete Package
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.APACHE_OPENWHISK_USER}}'
+      password: '{{env.APACHE_OPENWHISK_PASS}}'
+  exposes:
+  - type: rest
+    namespace: rest-packages-rest
+    port: 8080
+    description: REST adapter for Apache OpenWhisk REST API — Packages. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/namespaces/{namespace}/packages
+      name: namespaces-namespace-packages
+      description: REST surface for namespaces-namespace-packages.
+      operations:
+      - method: GET
+        name: listpackages
+        description: Apache OpenWhisk List Packages
+        call: rest-packages.listpackages
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/namespaces/{namespace}/packages/{packagename}
+      name: namespaces-namespace-packages-packagename
+      description: REST surface for namespaces-namespace-packages-packageName.
+      operations:
+      - method: GET
+        name: getpackage
+        description: Apache OpenWhisk Get Package
+        call: rest-packages.getpackage
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: createorupdatepackage
+        description: Apache OpenWhisk Create or Update Package
+        call: rest-packages.createorupdatepackage
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletepackage
+        description: Apache OpenWhisk Delete Package
+        call: rest-packages.deletepackage
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-packages-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache OpenWhisk REST API — Packages. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apache-openwhisk-list-packages
+      description: Apache OpenWhisk List Packages
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-packages.listpackages
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-openwhisk-get-package
+      description: Apache OpenWhisk Get Package
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-packages.getpackage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-openwhisk-create-update-package
+      description: Apache OpenWhisk Create or Update Package
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-packages.createorupdatepackage
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-openwhisk-delete-package
+      description: Apache OpenWhisk Delete Package
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-packages.deletepackage
+      outputParameters:
+      - type: object
+        mapping: $.

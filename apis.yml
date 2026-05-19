@@ -1,8 +1,8 @@
 aid: apache-openwhisk
 name: Apache OpenWhisk
-description: >-
-  Apache OpenWhisk is an open-source serverless cloud platform that executes functions in response to events at any scale. It supports multiple programming languages and provides a rich programming model
-  for creating serverless APIs and event-driven applications.
+description: Apache OpenWhisk is an open-source serverless cloud platform that executes functions in response to events at
+  any scale. It supports multiple programming languages and provides a rich programming model for creating serverless APIs
+  and event-driven applications.
 type: Index
 position: Consumer
 access: 3rd-Party
@@ -16,16 +16,14 @@ tags:
 - Open Source
 - Functions
 created: '2026-03-16'
-modified: '2026-04-19'
-url: >-
-  https://raw.githubusercontent.com/api-evangelist/apache-openwhisk/refs/heads/main/apis.yml
+modified: '2026-05-19'
+url: https://raw.githubusercontent.com/api-evangelist/apache-openwhisk/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
 - aid: apache-openwhisk:apache-openwhisk-rest-api
   name: Apache OpenWhisk REST API
-  description: >-
-    The OpenWhisk API provides REST endpoints for managing actions, triggers, rules, packages, and activations, supporting serverless function development in JavaScript, Python, Swift, Java, Go, PHP, and
-    custom Docker runtimes.
+  description: The OpenWhisk API provides REST endpoints for managing actions, triggers, rules, packages, and activations,
+    supporting serverless function development in JavaScript, Python, Swift, Java, Go, PHP, and custom Docker runtimes.
   humanURL: https://openwhisk.apache.org/documentation.html
   tags:
   - FaaS
@@ -40,6 +38,18 @@ apis:
     url: https://openwhisk.apache.org/documentation.html
   - type: OpenAPI
     url: openapi/apache-openwhisk-rest-api.yaml
+  - type: NaftikoCapability
+    url: capabilities/rest-actions.yaml
+  - type: NaftikoCapability
+    url: capabilities/rest-activations.yaml
+  - type: NaftikoCapability
+    url: capabilities/rest-namespaces.yaml
+  - type: NaftikoCapability
+    url: capabilities/rest-packages.yaml
+  - type: NaftikoCapability
+    url: capabilities/rest-rules.yaml
+  - type: NaftikoCapability
+    url: capabilities/rest-triggers.yaml
 maintainers:
 - FN: Kin Lane
   email: info@apievangelist.com
@@ -52,8 +62,6 @@ common:
   url: rules/apache-openwhisk-spectral-rules.yml
 - type: Vocabulary
   url: vocabulary/apache-openwhisk-vocabulary.yaml
-- type: NaftikoCapability
-  url: capabilities/serverless-workflow.yaml
 - type: JSONLD
   url: json-ld/apache-openwhisk-context.jsonld
 - type: Features
