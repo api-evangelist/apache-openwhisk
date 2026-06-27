@@ -38,17 +38,17 @@ apis:
     url: https://openwhisk.apache.org/documentation.html
   - type: OpenAPI
     url: openapi/apache-openwhisk-rest-api.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rest-actions.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rest-activations.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rest-namespaces.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rest-packages.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rest-rules.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rest-triggers.yaml
 maintainers:
 - FN: Kin Lane
