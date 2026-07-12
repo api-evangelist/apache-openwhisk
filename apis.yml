@@ -54,6 +54,12 @@ maintainers:
 - FN: Kin Lane
   email: info@apievangelist.com
 common:
+- type: VulnerabilityDisclosure
+  url: security/apache-openwhisk-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/apache-openwhisk-domain-security.yml
+- type: Authentication
+  url: authentication/apache-openwhisk-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/apache/openwhisk
 - type: Documentation

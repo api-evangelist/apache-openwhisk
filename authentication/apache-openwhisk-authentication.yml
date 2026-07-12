@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/apache-openwhisk-rest-api.yaml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic authentication using OpenWhisk credentials
+  sources:
+  - openapi/apache-openwhisk-rest-api.yaml
