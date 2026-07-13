@@ -1,75 +1,150 @@
-extends: "spectral:oas"
+# apache-openwhisk — Spectral ruleset (strengthened)
+# Plain Spectral. Existing hand-authored rules preserved; measured rules added
+# from this provider's own OpenAPI conventions by strengthen_ruleset.py,
+# then self-validated against the spec.
+#
+# Provenance:
+#   - servers-https-only: 100% of servers already https (error)
+#   - path-params-casing: snake @ 59% (n=39)
+#   - query-params-casing: snake @ 100% (n=10)
+#   - operationid-casing: camel @ 100% (n=24)
+#   - schema-names-casing: pascal @ 100% (n=18)
+#   - schema-properties-casing: snake @ 92% (n=80)
+#   - security: global (root) — NOT emitting operation-security-required
+#   - pagination params observed: ['limit']
+#   - merge: kept 10 existing, added 7 measured, upgraded 0
+#   - added: servers-https-only, path-params-casing, query-params-casing, operationid-casing, schema-names-casing, schema-properties-casing, no-empty-descriptions
+extends:
+  - spectral:oas
 rules:
   info-title-required:
-    description: "API must have a title"
+    description: API must have a title
     severity: error
-    given: "$.info"
+    given: $.info
     then:
       field: title
       function: truthy
   operation-summary-required:
-    description: "Operations must have summaries"
+    description: Operations must have summaries
     severity: error
-    given: "$.paths[*][*]"
+    given: $.paths[*][*]
     then:
       field: summary
       function: truthy
   operation-operationId-required:
-    description: "Operations must have operationIds"
+    description: Operations must have operationIds
     severity: error
-    given: "$.paths[*][*]"
+    given: $.paths[*][*]
     then:
       field: operationId
       function: truthy
   operation-tags-required:
-    description: "Operations must have tags"
+    description: Operations must have tags
     severity: warn
-    given: "$.paths[*][*]"
+    given: $.paths[*][*]
     then:
       field: tags
       function: truthy
   operation-summary-apache-prefix:
-    description: "Summaries should start with Apache OpenWhisk"
+    description: Summaries should start with Apache OpenWhisk
     severity: info
-    given: "$.paths[*][get,post,put,delete,patch].summary"
+    given: $.paths[*][get,post,put,delete,patch].summary
     then:
       function: pattern
       functionOptions:
-        match: "^Apache OpenWhisk"
+        match: ^Apache OpenWhisk
   paths-api-versioned:
-    description: "Paths should be versioned under /api/v1"
+    description: Paths should be versioned under /api/v1
     severity: info
-    given: "$.servers[*].url"
+    given: $.servers[*].url
     then:
       function: pattern
       functionOptions:
-        match: "/api/v1$"
+        match: /api/v1$
   security-basic-auth:
-    description: "API should use HTTP Basic authentication"
+    description: API should use HTTP Basic authentication
     severity: warn
-    given: "$.components.securitySchemes"
+    given: $.components.securitySchemes
     then:
       function: truthy
   response-success-required:
-    description: "Operations must have a 200 success response"
+    description: Operations must have a 200 success response
     severity: error
-    given: "$.paths[*][get,post,put].responses"
+    given: $.paths[*][get,post,put].responses
     then:
       function: schema
       functionOptions:
         schema:
-          required: ["200"]
+          required:
+          - '200'
   schema-properties-described:
-    description: "Schema properties should have descriptions"
+    description: Schema properties should have descriptions
     severity: info
-    given: "$.components.schemas[*].properties[*]"
+    given: $.components.schemas[*].properties[*]
     then:
       field: description
       function: truthy
   operation-parameters-described:
-    description: "Parameters should have descriptions"
+    description: Parameters should have descriptions
     severity: warn
-    given: "$.paths[*][*].parameters[*]"
+    given: $.paths[*][*].parameters[*]
     then:
       field: description
+      function: truthy
+  servers-https-only:
+    description: Server URLs must use HTTPS.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: ^https://
+  path-params-casing:
+    description: Path parameters should be snake_case (the dominant convention in this API).
+    severity: info
+    given: $.paths[*].parameters[?(@.in=='path')].name
+    then:
+      function: casing
+      functionOptions:
+        type: snake
+  query-params-casing:
+    description: Query parameters should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[?(@.in=='query')]
+    then:
+      field: name
+      function: casing
+      functionOptions:
+        type: snake
+  operationid-casing:
+    description: Operation IDs should be camelCase (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].operationId
+    then:
+      function: casing
+      functionOptions:
+        type: camel
+  schema-names-casing:
+    description: Component schema names should be PascalCase (the dominant convention in this API).
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: pascal
+  schema-properties-casing:
+    description: Schema properties should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.components.schemas[*].properties
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: snake
+  no-empty-descriptions:
+    description: Descriptions must not be empty strings.
+    severity: warn
+    given: $..description
+    then:
       function: truthy
