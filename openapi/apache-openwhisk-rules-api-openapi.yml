@@ -1,0 +1,197 @@
+openapi: 3.0.3
+info:
+  title: Apache OpenWhisk REST Actions Rules API
+  description: Apache OpenWhisk is an open-source serverless cloud platform. The REST API provides endpoints for managing actions, triggers, rules, packages, and activations for serverless function development.
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    url: https://openwhisk.apache.org/
+servers:
+- url: https://{host}/api/v1
+  description: Apache OpenWhisk API server
+  variables:
+    host:
+      default: localhost:443
+security:
+- basicAuth: []
+tags:
+- name: Rules
+paths:
+  /namespaces/{namespace}/rules:
+    get:
+      operationId: listRules
+      summary: Apache OpenWhisk List Rules
+      description: List all rules in the namespace.
+      tags:
+      - Rules
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      responses:
+        '200':
+          description: List of rules
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Rule'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /namespaces/{namespace}/rules/{ruleName}:
+    get:
+      operationId: getRule
+      summary: Apache OpenWhisk Get Rule
+      description: Get a rule by name.
+      tags:
+      - Rules
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/ruleName'
+      responses:
+        '200':
+          description: Rule details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rule'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: createOrUpdateRule
+      summary: Apache OpenWhisk Create or Update Rule
+      description: Create or update a rule linking a trigger to an action.
+      tags:
+      - Rules
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/ruleName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RuleRequest'
+      responses:
+        '200':
+          description: Rule created or updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rule'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: updateRuleStatus
+      summary: Apache OpenWhisk Update Rule Status
+      description: Enable or disable a rule.
+      tags:
+      - Rules
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/ruleName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum:
+                  - active
+                  - inactive
+      responses:
+        '200':
+          description: Rule status updated
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteRule
+      summary: Apache OpenWhisk Delete Rule
+      description: Delete a rule.
+      tags:
+      - Rules
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/ruleName'
+      responses:
+        '200':
+          description: Rule deleted
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    RuleRequest:
+      type: object
+      required:
+      - trigger
+      - action
+      properties:
+        trigger:
+          type: string
+          description: Trigger name to associate
+          example: /guest/myTrigger
+        action:
+          type: string
+          description: Action name to invoke
+          example: /guest/hello
+    Rule:
+      type: object
+      properties:
+        namespace:
+          type: string
+          example: guest
+        name:
+          type: string
+          example: myRule
+        version:
+          type: string
+          example: 0.0.1
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          example: active
+        trigger:
+          type: string
+          description: Fully qualified trigger name
+          example: /guest/myTrigger
+        action:
+          type: string
+          description: Fully qualified action name
+          example: /guest/hello
+        updated:
+          type: integer
+          example: 1718153645993
+  parameters:
+    ruleName:
+      name: ruleName
+      in: path
+      required: true
+      description: Rule name
+      schema:
+        type: string
+        example: myRule
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: OpenWhisk namespace
+      schema:
+        type: string
+        example: guest
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using OpenWhisk credentials
+x-generated-from: documentation

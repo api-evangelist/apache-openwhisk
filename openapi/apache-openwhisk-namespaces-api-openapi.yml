@@ -1,0 +1,146 @@
+openapi: 3.0.3
+info:
+  title: Apache OpenWhisk REST Actions Namespaces API
+  description: Apache OpenWhisk is an open-source serverless cloud platform. The REST API provides endpoints for managing actions, triggers, rules, packages, and activations for serverless function development.
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    url: https://openwhisk.apache.org/
+servers:
+- url: https://{host}/api/v1
+  description: Apache OpenWhisk API server
+  variables:
+    host:
+      default: localhost:443
+security:
+- basicAuth: []
+tags:
+- name: Namespaces
+paths:
+  /namespaces:
+    get:
+      operationId: listNamespaces
+      summary: Apache OpenWhisk List Namespaces
+      description: Fetch a list of namespaces accessible to the authenticated user.
+      tags:
+      - Namespaces
+      responses:
+        '200':
+          description: List of namespaces
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /namespaces/{namespace}:
+    get:
+      operationId: getNamespace
+      summary: Apache OpenWhisk Get Namespace
+      description: Get entities available in a namespace.
+      tags:
+      - Namespaces
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      responses:
+        '200':
+          description: Namespace entities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NamespaceEntities'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /namespaces/{namespace}/limits:
+    get:
+      operationId: getNamespaceLimits
+      summary: Apache OpenWhisk Get Namespace Limits
+      description: Get the resource limits for a namespace.
+      tags:
+      - Namespaces
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      responses:
+        '200':
+          description: Namespace limits
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NamespaceLimits'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    NamespaceEntities:
+      type: object
+      properties:
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityRef'
+        triggers:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityRef'
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityRef'
+    EntityRef:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Entity name
+          example: hello
+        annotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+    KeyValue:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Parameter key
+          example: name
+        value:
+          description: Parameter value
+          example: World
+    NamespaceLimits:
+      type: object
+      properties:
+        concurrency:
+          type: integer
+          description: Maximum concurrent activations
+          example: 1000
+        minuteRate:
+          type: integer
+          description: Actions per minute limit
+          example: 600
+        hourRate:
+          type: integer
+          description: Actions per hour limit
+          example: 36000
+  parameters:
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: OpenWhisk namespace
+      schema:
+        type: string
+        example: guest
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using OpenWhisk credentials
+x-generated-from: documentation

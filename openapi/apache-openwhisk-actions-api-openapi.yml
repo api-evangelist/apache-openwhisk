@@ -1,0 +1,372 @@
+openapi: 3.0.3
+info:
+  title: Apache OpenWhisk REST Actions API
+  description: Apache OpenWhisk is an open-source serverless cloud platform. The REST API provides endpoints for managing actions, triggers, rules, packages, and activations for serverless function development.
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    url: https://openwhisk.apache.org/
+servers:
+- url: https://{host}/api/v1
+  description: Apache OpenWhisk API server
+  variables:
+    host:
+      default: localhost:443
+security:
+- basicAuth: []
+tags:
+- name: Actions
+paths:
+  /namespaces/{namespace}/actions:
+    get:
+      operationId: listActions
+      summary: Apache OpenWhisk List Actions
+      description: List all actions in the namespace.
+      tags:
+      - Actions
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 30
+        description: Maximum number of actions to return
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          default: 0
+        description: Number of actions to skip
+      responses:
+        '200':
+          description: List of actions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Action'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /namespaces/{namespace}/actions/{actionName}:
+    get:
+      operationId: getAction
+      summary: Apache OpenWhisk Get Action
+      description: Get an action by name from the namespace.
+      tags:
+      - Actions
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/actionName'
+      responses:
+        '200':
+          description: Action details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Action'
+        '404':
+          description: Action not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: createOrUpdateAction
+      summary: Apache OpenWhisk Create or Update Action
+      description: Create or update an action in the namespace.
+      tags:
+      - Actions
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/actionName'
+      - name: overwrite
+        in: query
+        schema:
+          type: boolean
+        description: Whether to overwrite an existing action
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActionRequest'
+      responses:
+        '200':
+          description: Action created or updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Action'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: invokeAction
+      summary: Apache OpenWhisk Invoke Action
+      description: Invoke an action and optionally wait for the result.
+      tags:
+      - Actions
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/actionName'
+      - name: blocking
+        in: query
+        schema:
+          type: boolean
+        description: Block and wait for result
+      - name: result
+        in: query
+        schema:
+          type: boolean
+        description: Return only the result field
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Input parameters for the action
+      responses:
+        '200':
+          description: Action activation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Activation'
+        '202':
+          description: Action invoked asynchronously
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivationRef'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteAction
+      summary: Apache OpenWhisk Delete Action
+      description: Delete an action from the namespace.
+      tags:
+      - Actions
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/actionName'
+      responses:
+        '200':
+          description: Action deleted
+        '404':
+          description: Action not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Activation:
+      type: object
+      properties:
+        activationId:
+          type: string
+          description: Unique activation identifier
+          example: 44794bd6aab74415b4e42a308d880727
+        namespace:
+          type: string
+          example: guest
+        name:
+          type: string
+          description: Name of invoked action/trigger
+          example: hello
+        version:
+          type: string
+          example: 0.0.1
+        subject:
+          type: string
+          description: Subject who invoked the action
+          example: guest
+        start:
+          type: integer
+          description: Start time epoch ms
+          example: 1718153645993
+        end:
+          type: integer
+          description: End time epoch ms
+          example: 1718153646050
+        duration:
+          type: integer
+          description: Duration in milliseconds
+          example: 57
+        response:
+          $ref: '#/components/schemas/ActivationResponse'
+        logs:
+          type: array
+          items:
+            type: string
+          description: Activation log output
+        annotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+    Action:
+      type: object
+      properties:
+        namespace:
+          type: string
+          description: Namespace owning the action
+          example: guest
+        name:
+          type: string
+          description: Action name
+          example: hello
+        version:
+          type: string
+          description: Action version
+          example: 0.0.1
+        publish:
+          type: boolean
+          description: Whether the action is public
+          example: false
+        exec:
+          $ref: '#/components/schemas/ActionExec'
+        annotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+        limits:
+          $ref: '#/components/schemas/ActionLimits'
+        updated:
+          type: integer
+          description: Last update timestamp (epoch ms)
+          example: 1718153645993
+    KeyValue:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Parameter key
+          example: name
+        value:
+          description: Parameter value
+          example: World
+    ActionLimits:
+      type: object
+      properties:
+        timeout:
+          type: integer
+          description: Timeout in milliseconds
+          example: 60000
+        memory:
+          type: integer
+          description: Memory in MB
+          example: 256
+        logs:
+          type: integer
+          description: Log size limit in MB
+          example: 10
+    ActivationResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Activation status
+          example: success
+          enum:
+          - success
+          - application error
+          - developer error
+          - whisk internal error
+        statusCode:
+          type: integer
+          description: HTTP status code equivalent
+          example: 0
+        success:
+          type: boolean
+          example: true
+        result:
+          type: object
+          description: Action result payload
+    ActionExec:
+      type: object
+      properties:
+        kind:
+          type: string
+          description: Runtime kind
+          example: nodejs:18
+          enum:
+          - nodejs:18
+          - nodejs:20
+          - python:3
+          - java:8
+          - go:1.20
+          - php:8.0
+          - ruby:2.5
+          - swift:5.7
+          - dotnet:2.2
+          - docker
+          - blackbox
+          - sequence
+        code:
+          type: string
+          description: Inline function source code
+          example: 'function main(params) { return { message: ''Hello '' + (params.name || ''World'') }; }'
+        image:
+          type: string
+          description: Docker image for blackbox/docker kind
+          example: openwhisk/nodejs18action
+        components:
+          type: array
+          items:
+            type: string
+          description: Sequence of action names (for sequence kind)
+    ActionRequest:
+      type: object
+      required:
+      - exec
+      properties:
+        exec:
+          $ref: '#/components/schemas/ActionExec'
+        annotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+        limits:
+          $ref: '#/components/schemas/ActionLimits'
+    ActivationRef:
+      type: object
+      properties:
+        activationId:
+          type: string
+          description: Activation identifier for async invocations
+          example: 44794bd6aab74415b4e42a308d880727
+  parameters:
+    actionName:
+      name: actionName
+      in: path
+      required: true
+      description: Action name
+      schema:
+        type: string
+        example: hello
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: OpenWhisk namespace
+      schema:
+        type: string
+        example: guest
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using OpenWhisk credentials
+x-generated-from: documentation

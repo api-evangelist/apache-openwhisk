@@ -1,0 +1,193 @@
+openapi: 3.0.3
+info:
+  title: Apache OpenWhisk REST Actions Packages API
+  description: Apache OpenWhisk is an open-source serverless cloud platform. The REST API provides endpoints for managing actions, triggers, rules, packages, and activations for serverless function development.
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    url: https://openwhisk.apache.org/
+servers:
+- url: https://{host}/api/v1
+  description: Apache OpenWhisk API server
+  variables:
+    host:
+      default: localhost:443
+security:
+- basicAuth: []
+tags:
+- name: Packages
+paths:
+  /namespaces/{namespace}/packages:
+    get:
+      operationId: listPackages
+      summary: Apache OpenWhisk List Packages
+      description: List all packages in the namespace.
+      tags:
+      - Packages
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      responses:
+        '200':
+          description: List of packages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Package'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /namespaces/{namespace}/packages/{packageName}:
+    get:
+      operationId: getPackage
+      summary: Apache OpenWhisk Get Package
+      description: Get a package by name.
+      tags:
+      - Packages
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/packageName'
+      responses:
+        '200':
+          description: Package details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Package'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: createOrUpdatePackage
+      summary: Apache OpenWhisk Create or Update Package
+      description: Create or update a package.
+      tags:
+      - Packages
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/packageName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PackageRequest'
+      responses:
+        '200':
+          description: Package created or updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Package'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deletePackage
+      summary: Apache OpenWhisk Delete Package
+      description: Delete a package.
+      tags:
+      - Packages
+      parameters:
+      - $ref: '#/components/parameters/namespace'
+      - $ref: '#/components/parameters/packageName'
+      responses:
+        '200':
+          description: Package deleted
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    packageName:
+      name: packageName
+      in: path
+      required: true
+      description: Package name
+      schema:
+        type: string
+        example: myPackage
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: OpenWhisk namespace
+      schema:
+        type: string
+        example: guest
+  schemas:
+    EntityRef:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Entity name
+          example: hello
+        annotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+    PackageRequest:
+      type: object
+      properties:
+        annotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+    KeyValue:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Parameter key
+          example: name
+        value:
+          description: Parameter value
+          example: World
+    Package:
+      type: object
+      properties:
+        namespace:
+          type: string
+          example: guest
+        name:
+          type: string
+          example: myPackage
+        version:
+          type: string
+          example: 0.0.1
+        publish:
+          type: boolean
+          example: false
+        annotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityRef'
+        feeds:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityRef'
+        updated:
+          type: integer
+          example: 1718153645993
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using OpenWhisk credentials
+x-generated-from: documentation
