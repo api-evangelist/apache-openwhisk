@@ -4,9 +4,22 @@ description: Apache OpenWhisk is an open-source serverless cloud platform that e
   any scale. It supports multiple programming languages and provides a rich programming model for creating serverless APIs
   and event-driven applications.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/apache-openwhisk.png
 tags:
 - Cloud Native
 - Event-Driven
@@ -20,24 +33,132 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/apache-openwhisk/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-- aid: apache-openwhisk:apache-openwhisk-rest-api
-  name: Apache OpenWhisk REST API
-  description: The OpenWhisk API provides REST endpoints for managing actions, triggers, rules, packages, and activations,
-    supporting serverless function development in JavaScript, Python, Swift, Java, Go, PHP, and custom Docker runtimes.
+- aid: apache-openwhisk:apache-openwhisk-actions-api
+  name: Apache OpenWhisk Actions API
+  description: The Actions API from Apache OpenWhisk — 2 operation(s) for actions.
   humanURL: https://openwhisk.apache.org/documentation.html
   tags:
-  - FaaS
-  - Functions
-  - REST
-  - Serverless
-  - Apache
-  - Open Source
-  - Cloud Native
+  - Actions
   properties:
+  - type: OpenAPI
+    url: openapi/apache-openwhisk-actions-api-openapi.yml
   - type: Documentation
     url: https://openwhisk.apache.org/documentation.html
+  - type: X-NaftikoCapability
+    url: capabilities/rest-actions.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-activations.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-namespaces.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-packages.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-rules.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-triggers.yaml
+- aid: apache-openwhisk:apache-openwhisk-activations-api
+  name: Apache OpenWhisk Activations API
+  description: The Activations API from Apache OpenWhisk — 2 operation(s) for activations.
+  humanURL: https://openwhisk.apache.org/documentation.html
+  tags:
+  - Activations
+  properties:
   - type: OpenAPI
-    url: openapi/apache-openwhisk-rest-api.yaml
+    url: openapi/apache-openwhisk-activations-api-openapi.yml
+  - type: Documentation
+    url: https://openwhisk.apache.org/documentation.html
+  - type: X-NaftikoCapability
+    url: capabilities/rest-actions.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-activations.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-namespaces.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-packages.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-rules.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-triggers.yaml
+- aid: apache-openwhisk:apache-openwhisk-namespaces-api
+  name: Apache OpenWhisk Namespaces API
+  description: The Namespaces API from Apache OpenWhisk — 3 operation(s) for namespaces.
+  humanURL: https://openwhisk.apache.org/documentation.html
+  tags:
+  - Namespaces
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-openwhisk-namespaces-api-openapi.yml
+  - type: Documentation
+    url: https://openwhisk.apache.org/documentation.html
+  - type: X-NaftikoCapability
+    url: capabilities/rest-actions.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-activations.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-namespaces.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-packages.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-rules.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-triggers.yaml
+- aid: apache-openwhisk:apache-openwhisk-packages-api
+  name: Apache OpenWhisk Packages API
+  description: The Packages API from Apache OpenWhisk — 2 operation(s) for packages.
+  humanURL: https://openwhisk.apache.org/documentation.html
+  tags:
+  - Packages
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-openwhisk-packages-api-openapi.yml
+  - type: Documentation
+    url: https://openwhisk.apache.org/documentation.html
+  - type: X-NaftikoCapability
+    url: capabilities/rest-actions.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-activations.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-namespaces.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-packages.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-rules.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-triggers.yaml
+- aid: apache-openwhisk:apache-openwhisk-rules-api
+  name: Apache OpenWhisk Rules API
+  description: The Rules API from Apache OpenWhisk — 2 operation(s) for rules.
+  humanURL: https://openwhisk.apache.org/documentation.html
+  tags:
+  - Rules
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-openwhisk-rules-api-openapi.yml
+  - type: Documentation
+    url: https://openwhisk.apache.org/documentation.html
+  - type: X-NaftikoCapability
+    url: capabilities/rest-actions.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-activations.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-namespaces.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-packages.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-rules.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/rest-triggers.yaml
+- aid: apache-openwhisk:apache-openwhisk-triggers-api
+  name: Apache OpenWhisk Triggers API
+  description: The Triggers API from Apache OpenWhisk — 2 operation(s) for triggers.
+  humanURL: https://openwhisk.apache.org/documentation.html
+  tags:
+  - Triggers
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-openwhisk-triggers-api-openapi.yml
+  - type: Documentation
+    url: https://openwhisk.apache.org/documentation.html
   - type: X-NaftikoCapability
     url: capabilities/rest-actions.yaml
   - type: X-NaftikoCapability
