@@ -1,0 +1,24 @@
+{
+  "provider": "apache-openwhisk",
+  "sources": [
+    "apache-openwhisk-actions-api-openapi.yml",
+    "apache-openwhisk-activations-api-openapi.yml",
+    "apache-openwhisk-namespaces-api-openapi.yml",
+    "apache-openwhisk-packages-api-openapi.yml",
+    "apache-openwhisk-rules-api-openapi.yml",
+    "apache-openwhisk-triggers-api-openapi.yml"
+  ],
+  "outputs": [
+    "apache-openwhisk-actions-api-openapi.yml",
+    "apache-openwhisk-activations-api-openapi.yml",
+    "apache-openwhisk-namespaces-api-openapi.yml",
+    "apache-openwhisk-packages-api-openapi.yml",
+    "apache-openwhisk-rules-api-openapi.yml",
+    "apache-openwhisk-triggers-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
