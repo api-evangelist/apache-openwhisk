@@ -44,18 +44,6 @@ apis:
     url: openapi/apache-openwhisk-actions-api-openapi.yml
   - type: Documentation
     url: https://openwhisk.apache.org/documentation.html
-  - type: X-NaftikoCapability
-    url: capabilities/rest-actions.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-activations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-namespaces.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-packages.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-rules.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-triggers.yaml
 - aid: apache-openwhisk:apache-openwhisk-activations-api
   name: Apache OpenWhisk Activations API
   description: The Activations API from Apache OpenWhisk — 2 operation(s) for activations.
@@ -67,18 +55,6 @@ apis:
     url: openapi/apache-openwhisk-activations-api-openapi.yml
   - type: Documentation
     url: https://openwhisk.apache.org/documentation.html
-  - type: X-NaftikoCapability
-    url: capabilities/rest-actions.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-activations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-namespaces.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-packages.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-rules.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-triggers.yaml
 - aid: apache-openwhisk:apache-openwhisk-namespaces-api
   name: Apache OpenWhisk Namespaces API
   description: The Namespaces API from Apache OpenWhisk — 3 operation(s) for namespaces.
@@ -90,18 +66,6 @@ apis:
     url: openapi/apache-openwhisk-namespaces-api-openapi.yml
   - type: Documentation
     url: https://openwhisk.apache.org/documentation.html
-  - type: X-NaftikoCapability
-    url: capabilities/rest-actions.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-activations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-namespaces.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-packages.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-rules.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-triggers.yaml
 - aid: apache-openwhisk:apache-openwhisk-packages-api
   name: Apache OpenWhisk Packages API
   description: The Packages API from Apache OpenWhisk — 2 operation(s) for packages.
@@ -113,18 +77,6 @@ apis:
     url: openapi/apache-openwhisk-packages-api-openapi.yml
   - type: Documentation
     url: https://openwhisk.apache.org/documentation.html
-  - type: X-NaftikoCapability
-    url: capabilities/rest-actions.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-activations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-namespaces.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-packages.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-rules.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-triggers.yaml
 - aid: apache-openwhisk:apache-openwhisk-rules-api
   name: Apache OpenWhisk Rules API
   description: The Rules API from Apache OpenWhisk — 2 operation(s) for rules.
@@ -136,18 +88,6 @@ apis:
     url: openapi/apache-openwhisk-rules-api-openapi.yml
   - type: Documentation
     url: https://openwhisk.apache.org/documentation.html
-  - type: X-NaftikoCapability
-    url: capabilities/rest-actions.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-activations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-namespaces.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-packages.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-rules.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-triggers.yaml
 - aid: apache-openwhisk:apache-openwhisk-triggers-api
   name: Apache OpenWhisk Triggers API
   description: The Triggers API from Apache OpenWhisk — 2 operation(s) for triggers.
@@ -159,18 +99,6 @@ apis:
     url: openapi/apache-openwhisk-triggers-api-openapi.yml
   - type: Documentation
     url: https://openwhisk.apache.org/documentation.html
-  - type: X-NaftikoCapability
-    url: capabilities/rest-actions.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-activations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-namespaces.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-packages.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-rules.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-triggers.yaml
 maintainers:
 - FN: Kin Lane
   email: info@apievangelist.com
