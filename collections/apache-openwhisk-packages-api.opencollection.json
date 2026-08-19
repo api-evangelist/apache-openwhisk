@@ -1,0 +1,123 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache OpenWhisk REST Actions Packages API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Packages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache OpenWhisk List Packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/namespaces/:namespace/packages",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "OpenWhisk namespace"
+              }
+            ]
+          },
+          "docs": "List all packages in the namespace."
+        },
+        {
+          "info": {
+            "name": "Apache OpenWhisk Get Package",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/namespaces/:namespace/packages/:packageName",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "OpenWhisk namespace"
+              },
+              {
+                "name": "packageName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              }
+            ]
+          },
+          "docs": "Get a package by name."
+        },
+        {
+          "info": {
+            "name": "Apache OpenWhisk Create or Update Package",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}/api/v1/namespaces/:namespace/packages/:packageName",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "OpenWhisk namespace"
+              },
+              {
+                "name": "packageName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update a package."
+        },
+        {
+          "info": {
+            "name": "Apache OpenWhisk Delete Package",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}/api/v1/namespaces/:namespace/packages/:packageName",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "OpenWhisk namespace"
+              },
+              {
+                "name": "packageName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              }
+            ]
+          },
+          "docs": "Delete a package."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,158 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache OpenWhisk REST Actions Triggers API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Triggers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache OpenWhisk List Triggers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/namespaces/:namespace/triggers",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "OpenWhisk namespace"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of triggers to return"
+              }
+            ]
+          },
+          "docs": "List all triggers in the namespace."
+        },
+        {
+          "info": {
+            "name": "Apache OpenWhisk Get Trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/namespaces/:namespace/triggers/:triggerName",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "OpenWhisk namespace"
+              },
+              {
+                "name": "triggerName",
+                "value": "",
+                "type": "path",
+                "description": "Trigger name"
+              }
+            ]
+          },
+          "docs": "Get a trigger by name."
+        },
+        {
+          "info": {
+            "name": "Apache OpenWhisk Fire Trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/api/v1/namespaces/:namespace/triggers/:triggerName",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "OpenWhisk namespace"
+              },
+              {
+                "name": "triggerName",
+                "value": "",
+                "type": "path",
+                "description": "Trigger name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fire a trigger, activating all associated rules."
+        },
+        {
+          "info": {
+            "name": "Apache OpenWhisk Create or Update Trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}/api/v1/namespaces/:namespace/triggers/:triggerName",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "OpenWhisk namespace"
+              },
+              {
+                "name": "triggerName",
+                "value": "",
+                "type": "path",
+                "description": "Trigger name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update a trigger."
+        },
+        {
+          "info": {
+            "name": "Apache OpenWhisk Delete Trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}/api/v1/namespaces/:namespace/triggers/:triggerName",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "OpenWhisk namespace"
+              },
+              {
+                "name": "triggerName",
+                "value": "",
+                "type": "path",
+                "description": "Trigger name"
+              }
+            ]
+          },
+          "docs": "Delete a trigger."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

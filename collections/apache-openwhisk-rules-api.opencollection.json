@@ -1,0 +1,152 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache OpenWhisk REST Actions Rules API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache OpenWhisk List Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/namespaces/:namespace/rules",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "OpenWhisk namespace"
+              }
+            ]
+          },
+          "docs": "List all rules in the namespace."
+        },
+        {
+          "info": {
+            "name": "Apache OpenWhisk Get Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/namespaces/:namespace/rules/:ruleName",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "OpenWhisk namespace"
+              },
+              {
+                "name": "ruleName",
+                "value": "",
+                "type": "path",
+                "description": "Rule name"
+              }
+            ]
+          },
+          "docs": "Get a rule by name."
+        },
+        {
+          "info": {
+            "name": "Apache OpenWhisk Update Rule Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/api/v1/namespaces/:namespace/rules/:ruleName",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "OpenWhisk namespace"
+              },
+              {
+                "name": "ruleName",
+                "value": "",
+                "type": "path",
+                "description": "Rule name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enable or disable a rule."
+        },
+        {
+          "info": {
+            "name": "Apache OpenWhisk Create or Update Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}/api/v1/namespaces/:namespace/rules/:ruleName",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "OpenWhisk namespace"
+              },
+              {
+                "name": "ruleName",
+                "value": "",
+                "type": "path",
+                "description": "Rule name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update a rule linking a trigger to an action."
+        },
+        {
+          "info": {
+            "name": "Apache OpenWhisk Delete Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}/api/v1/namespaces/:namespace/rules/:ruleName",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "OpenWhisk namespace"
+              },
+              {
+                "name": "ruleName",
+                "value": "",
+                "type": "path",
+                "description": "Rule name"
+              }
+            ]
+          },
+          "docs": "Delete a rule."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

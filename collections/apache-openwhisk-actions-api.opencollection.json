@@ -1,0 +1,182 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache OpenWhisk REST Actions API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Actions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache OpenWhisk List Actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/namespaces/:namespace/actions",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "OpenWhisk namespace"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of actions to return"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of actions to skip"
+              }
+            ]
+          },
+          "docs": "List all actions in the namespace."
+        },
+        {
+          "info": {
+            "name": "Apache OpenWhisk Get Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/namespaces/:namespace/actions/:actionName",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "OpenWhisk namespace"
+              },
+              {
+                "name": "actionName",
+                "value": "",
+                "type": "path",
+                "description": "Action name"
+              }
+            ]
+          },
+          "docs": "Get an action by name from the namespace."
+        },
+        {
+          "info": {
+            "name": "Apache OpenWhisk Invoke Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/api/v1/namespaces/:namespace/actions/:actionName",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "OpenWhisk namespace"
+              },
+              {
+                "name": "actionName",
+                "value": "",
+                "type": "path",
+                "description": "Action name"
+              },
+              {
+                "name": "blocking",
+                "value": "",
+                "type": "query",
+                "description": "Block and wait for result"
+              },
+              {
+                "name": "result",
+                "value": "",
+                "type": "query",
+                "description": "Return only the result field"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invoke an action and optionally wait for the result."
+        },
+        {
+          "info": {
+            "name": "Apache OpenWhisk Create or Update Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}/api/v1/namespaces/:namespace/actions/:actionName",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "OpenWhisk namespace"
+              },
+              {
+                "name": "actionName",
+                "value": "",
+                "type": "path",
+                "description": "Action name"
+              },
+              {
+                "name": "overwrite",
+                "value": "",
+                "type": "query",
+                "description": "Whether to overwrite an existing action"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update an action in the namespace."
+        },
+        {
+          "info": {
+            "name": "Apache OpenWhisk Delete Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}/api/v1/namespaces/:namespace/actions/:actionName",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "OpenWhisk namespace"
+              },
+              {
+                "name": "actionName",
+                "value": "",
+                "type": "path",
+                "description": "Action name"
+              }
+            ]
+          },
+          "docs": "Delete an action from the namespace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

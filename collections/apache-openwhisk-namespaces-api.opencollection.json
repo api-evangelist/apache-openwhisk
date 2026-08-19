@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache OpenWhisk REST Actions Namespaces API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Namespaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache OpenWhisk List Namespaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/namespaces"
+          },
+          "docs": "Fetch a list of namespaces accessible to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Apache OpenWhisk Get Namespace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/namespaces/:namespace",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "OpenWhisk namespace"
+              }
+            ]
+          },
+          "docs": "Get entities available in a namespace."
+        },
+        {
+          "info": {
+            "name": "Apache OpenWhisk Get Namespace Limits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/namespaces/:namespace/limits",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "OpenWhisk namespace"
+              }
+            ]
+          },
+          "docs": "Get the resource limits for a namespace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
