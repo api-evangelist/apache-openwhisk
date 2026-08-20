@@ -21,6 +21,14 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/apache-openwhisk.png
 tags:
+- Cloud-Native
+- Event-Driven
+- Function-as-a-Service
+- Serverless
+- Apache
+- Open-Source
+- Functions
+tags_raw:
 - Cloud Native
 - Event-Driven
 - FaaS
