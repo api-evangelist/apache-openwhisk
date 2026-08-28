@@ -4,6 +4,17 @@ description: Apache OpenWhisk is an open-source serverless cloud platform that e
   any scale. It supports multiple programming languages and provides a rich programming model for creating serverless APIs
   and event-driven applications.
 type: Index
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
