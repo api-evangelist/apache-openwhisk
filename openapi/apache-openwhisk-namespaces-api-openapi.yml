@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Apache OpenWhisk REST Actions Namespaces API
   description: Apache OpenWhisk is an open-source serverless cloud platform. The REST API provides endpoints for managing actions, triggers, rules, packages, and activations for serverless function development.
@@ -77,22 +77,16 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: OpenWhisk namespace
+      schema:
+        type: string
+        example: guest
   schemas:
-    NamespaceEntities:
-      type: object
-      properties:
-        actions:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityRef'
-        triggers:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityRef'
-        rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityRef'
     EntityRef:
       type: object
       properties:
@@ -129,15 +123,21 @@ components:
           type: integer
           description: Actions per hour limit
           example: 36000
-  parameters:
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      description: OpenWhisk namespace
-      schema:
-        type: string
-        example: guest
+    NamespaceEntities:
+      type: object
+      properties:
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityRef'
+        triggers:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityRef'
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityRef'
   securitySchemes:
     basicAuth:
       type: http

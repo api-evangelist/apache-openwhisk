@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Apache OpenWhisk REST Actions Activations API
   description: Apache OpenWhisk is an open-source serverless cloud platform. The REST API provides endpoints for managing actions, triggers, rules, packages, and activations for serverless function development.
@@ -135,6 +135,28 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValue'
+    ActivationResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Activation status
+          example: success
+          enum:
+          - success
+          - application error
+          - developer error
+          - whisk internal error
+        statusCode:
+          type: integer
+          description: HTTP status code equivalent
+          example: 0
+        success:
+          type: boolean
+          example: true
+        result:
+          type: object
+          description: Action result payload
     KeyValue:
       type: object
       properties:
@@ -163,28 +185,6 @@ components:
         end:
           type: integer
           example: 1718153646050
-    ActivationResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          description: Activation status
-          example: success
-          enum:
-          - success
-          - application error
-          - developer error
-          - whisk internal error
-        statusCode:
-          type: integer
-          description: HTTP status code equivalent
-          example: 0
-        success:
-          type: boolean
-          example: true
-        result:
-          type: object
-          description: Action result payload
   parameters:
     namespace:
       name: namespace

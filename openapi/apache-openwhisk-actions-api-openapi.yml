@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Apache OpenWhisk REST Actions API
   description: Apache OpenWhisk is an open-source serverless cloud platform. The REST API provides endpoints for managing actions, triggers, rules, packages, and activations for serverless function development.
@@ -208,6 +208,28 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValue'
+    ActionLimits:
+      type: object
+      properties:
+        timeout:
+          type: integer
+          description: Timeout in milliseconds
+          example: 60000
+        memory:
+          type: integer
+          description: Memory in MB
+          example: 256
+        logs:
+          type: integer
+          description: Log size limit in MB
+          example: 10
+    ActivationRef:
+      type: object
+      properties:
+        activationId:
+          type: string
+          description: Activation identifier for async invocations
+          example: 44794bd6aab74415b4e42a308d880727
     Action:
       type: object
       properties:
@@ -253,21 +275,6 @@ components:
         value:
           description: Parameter value
           example: World
-    ActionLimits:
-      type: object
-      properties:
-        timeout:
-          type: integer
-          description: Timeout in milliseconds
-          example: 60000
-        memory:
-          type: integer
-          description: Memory in MB
-          example: 256
-        logs:
-          type: integer
-          description: Log size limit in MB
-          example: 10
     ActivationResponse:
       type: object
       properties:
@@ -290,6 +297,23 @@ components:
         result:
           type: object
           description: Action result payload
+    ActionRequest:
+      type: object
+      required:
+      - exec
+      properties:
+        exec:
+          $ref: '#/components/schemas/ActionExec'
+        annotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+        limits:
+          $ref: '#/components/schemas/ActionLimits'
     ActionExec:
       type: object
       properties:
@@ -323,39 +347,7 @@ components:
           items:
             type: string
           description: Sequence of action names (for sequence kind)
-    ActionRequest:
-      type: object
-      required:
-      - exec
-      properties:
-        exec:
-          $ref: '#/components/schemas/ActionExec'
-        annotations:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValue'
-        parameters:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValue'
-        limits:
-          $ref: '#/components/schemas/ActionLimits'
-    ActivationRef:
-      type: object
-      properties:
-        activationId:
-          type: string
-          description: Activation identifier for async invocations
-          example: 44794bd6aab74415b4e42a308d880727
   parameters:
-    actionName:
-      name: actionName
-      in: path
-      required: true
-      description: Action name
-      schema:
-        type: string
-        example: hello
     namespace:
       name: namespace
       in: path
@@ -364,6 +356,14 @@ components:
       schema:
         type: string
         example: guest
+    actionName:
+      name: actionName
+      in: path
+      required: true
+      description: Action name
+      schema:
+        type: string
+        example: hello
   securitySchemes:
     basicAuth:
       type: http

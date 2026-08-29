@@ -19,6 +19,14 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "apache-openwhisk-actions-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apache-openwhisk-activations-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apache-openwhisk-namespaces-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apache-openwhisk-packages-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apache-openwhisk-rules-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apache-openwhisk-triggers-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }
