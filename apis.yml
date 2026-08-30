@@ -34,7 +34,7 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/apache-ope
 tags:
 - Cloud-Native
 - Event-Driven
-- Function-as-a-Service
+- FaaS
 - Serverless
 - Apache
 - Open-Source
