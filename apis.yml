@@ -1,8 +1,8 @@
 aid: apache-openwhisk
 name: Apache OpenWhisk
-description: Apache OpenWhisk is an open-source serverless cloud platform that executes functions in response to events at
-  any scale. It supports multiple programming languages and provides a rich programming model for creating serverless APIs
-  and event-driven applications.
+description: Apache OpenWhisk is an open-source serverless cloud platform that executes functions in response
+  to events at any scale. It supports multiple programming languages and provides a rich programming model
+  for creating serverless APIs and event-driven applications.
 type: Index
 deliveryModel:
   model: unknown
@@ -49,7 +49,7 @@ tags_raw:
 - Open Source
 - Functions
 created: '2026-03-16'
-modified: '2026-05-19'
+modified: '2026-09-16'
 url: https://raw.githubusercontent.com/api-evangelist/apache-openwhisk/refs/heads/main/apis.yml
 specificationVersion: '0.23'
 apis:
@@ -123,6 +123,8 @@ maintainers:
 - FN: Kin Lane
   email: info@apievangelist.com
 common:
+- type: Website
+  url: https://apache.org
 - type: AgenticAccess
   url: agentic-access/apache-openwhisk-agentic-access.yml
 - type: VulnerabilityDisclosure
