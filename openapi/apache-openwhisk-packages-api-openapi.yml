@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Apache OpenWhisk REST Actions Packages API
+  title: Apache OpenWhisk REST Packages API
   description: Apache OpenWhisk is an open-source serverless cloud platform. The REST API provides endpoints for managing actions, triggers, rules, packages, and activations for serverless function development.
   version: 1.0.0
   license:
@@ -101,24 +101,39 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      description: OpenWhisk namespace
-      schema:
-        type: string
-        example: guest
-    packageName:
-      name: packageName
-      in: path
-      required: true
-      description: Package name
-      schema:
-        type: string
-        example: myPackage
   schemas:
+    KeyValue:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Parameter key
+          example: name
+        value:
+          description: Parameter value
+          example: World
+    EntityRef:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Entity name
+          example: hello
+        annotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+    PackageRequest:
+      type: object
+      properties:
+        annotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
     Package:
       type: object
       properties:
@@ -153,38 +168,23 @@ components:
         updated:
           type: integer
           example: 1718153645993
-    EntityRef:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Entity name
-          example: hello
-        annotations:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValue'
-    KeyValue:
-      type: object
-      properties:
-        key:
-          type: string
-          description: Parameter key
-          example: name
-        value:
-          description: Parameter value
-          example: World
-    PackageRequest:
-      type: object
-      properties:
-        annotations:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValue'
-        parameters:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValue'
+  parameters:
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: OpenWhisk namespace
+      schema:
+        type: string
+        example: guest
+    packageName:
+      name: packageName
+      in: path
+      required: true
+      description: Package name
+      schema:
+        type: string
+        example: myPackage
   securitySchemes:
     basicAuth:
       type: http

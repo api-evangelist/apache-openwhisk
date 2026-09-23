@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Apache OpenWhisk REST Actions Namespaces API
+  title: Apache OpenWhisk REST Namespaces API
   description: Apache OpenWhisk is an open-source serverless cloud platform. The REST API provides endpoints for managing actions, triggers, rules, packages, and activations for serverless function development.
   version: 1.0.0
   license:
@@ -77,27 +77,22 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      description: OpenWhisk namespace
-      schema:
-        type: string
-        example: guest
   schemas:
-    EntityRef:
+    NamespaceEntities:
       type: object
       properties:
-        name:
-          type: string
-          description: Entity name
-          example: hello
-        annotations:
+        actions:
           type: array
           items:
-            $ref: '#/components/schemas/KeyValue'
+            $ref: '#/components/schemas/EntityRef'
+        triggers:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityRef'
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityRef'
     KeyValue:
       type: object
       properties:
@@ -123,21 +118,26 @@ components:
           type: integer
           description: Actions per hour limit
           example: 36000
-    NamespaceEntities:
+    EntityRef:
       type: object
       properties:
-        actions:
+        name:
+          type: string
+          description: Entity name
+          example: hello
+        annotations:
           type: array
           items:
-            $ref: '#/components/schemas/EntityRef'
-        triggers:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityRef'
-        rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityRef'
+            $ref: '#/components/schemas/KeyValue'
+  parameters:
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: OpenWhisk namespace
+      schema:
+        type: string
+        example: guest
   securitySchemes:
     basicAuth:
       type: http

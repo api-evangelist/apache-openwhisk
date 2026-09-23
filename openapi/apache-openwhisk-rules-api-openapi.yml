@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Apache OpenWhisk REST Actions Rules API
+  title: Apache OpenWhisk REST Rules API
   description: Apache OpenWhisk is an open-source serverless cloud platform. The REST API provides endpoints for managing actions, triggers, rules, packages, and activations for serverless function development.
   version: 1.0.0
   license:
@@ -129,6 +129,20 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    RuleRequest:
+      type: object
+      required:
+      - trigger
+      - action
+      properties:
+        trigger:
+          type: string
+          description: Trigger name to associate
+          example: /guest/myTrigger
+        action:
+          type: string
+          description: Action name to invoke
+          example: /guest/hello
     Rule:
       type: object
       properties:
@@ -158,29 +172,7 @@ components:
         updated:
           type: integer
           example: 1718153645993
-    RuleRequest:
-      type: object
-      required:
-      - trigger
-      - action
-      properties:
-        trigger:
-          type: string
-          description: Trigger name to associate
-          example: /guest/myTrigger
-        action:
-          type: string
-          description: Action name to invoke
-          example: /guest/hello
   parameters:
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      description: OpenWhisk namespace
-      schema:
-        type: string
-        example: guest
     ruleName:
       name: ruleName
       in: path
@@ -189,6 +181,14 @@ components:
       schema:
         type: string
         example: myRule
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: OpenWhisk namespace
+      schema:
+        type: string
+        example: guest
   securitySchemes:
     basicAuth:
       type: http

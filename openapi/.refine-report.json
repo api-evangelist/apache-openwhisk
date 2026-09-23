@@ -1,12 +1,7 @@
 {
   "provider": "apache-openwhisk",
   "sources": [
-    "apache-openwhisk-actions-api-openapi.yml",
-    "apache-openwhisk-activations-api-openapi.yml",
-    "apache-openwhisk-namespaces-api-openapi.yml",
-    "apache-openwhisk-packages-api-openapi.yml",
-    "apache-openwhisk-rules-api-openapi.yml",
-    "apache-openwhisk-triggers-api-openapi.yml"
+    "_ae-authored/apache-openwhisk-rest-api.yaml"
   ],
   "outputs": [
     "apache-openwhisk-actions-api-openapi.yml",
@@ -20,13 +15,22 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "apache-openwhisk-actions-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apache-openwhisk-activations-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apache-openwhisk-namespaces-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apache-openwhisk-packages-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apache-openwhisk-rules-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apache-openwhisk-triggers-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "apache-openwhisk-rest-api.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apache-openwhisk-rest-api.yaml: declared missing tag: Actions",
+    "apache-openwhisk-rest-api.yaml: declared missing tag: Activations",
+    "apache-openwhisk-rest-api.yaml: declared missing tag: Namespaces",
+    "apache-openwhisk-rest-api.yaml: declared missing tag: Packages",
+    "apache-openwhisk-rest-api.yaml: declared missing tag: Rules",
+    "apache-openwhisk-rest-api.yaml: declared missing tag: Triggers",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "apache-openwhisk-actions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-openwhisk-activations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-openwhisk-namespaces-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-openwhisk-packages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-openwhisk-rules-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-openwhisk-triggers-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
