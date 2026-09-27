@@ -91,6 +91,16 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    KeyValue:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Parameter key
+          example: name
+        value:
+          description: Parameter value
+          example: World
     ActivationSummary:
       type: object
       properties:
@@ -109,38 +119,6 @@ components:
         end:
           type: integer
           example: 1718153646050
-    KeyValue:
-      type: object
-      properties:
-        key:
-          type: string
-          description: Parameter key
-          example: name
-        value:
-          description: Parameter value
-          example: World
-    ActivationResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          description: Activation status
-          example: success
-          enum:
-          - success
-          - application error
-          - developer error
-          - whisk internal error
-        statusCode:
-          type: integer
-          description: HTTP status code equivalent
-          example: 0
-        success:
-          type: boolean
-          example: true
-        result:
-          type: object
-          description: Action result payload
     Activation:
       type: object
       properties:
@@ -185,6 +163,28 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValue'
+    ActivationResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Activation status
+          example: success
+          enum:
+          - success
+          - application error
+          - developer error
+          - whisk internal error
+        statusCode:
+          type: integer
+          description: HTTP status code equivalent
+          example: 0
+        success:
+          type: boolean
+          example: true
+        result:
+          type: object
+          description: Action result payload
   parameters:
     namespace:
       name: namespace

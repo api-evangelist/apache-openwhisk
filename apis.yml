@@ -38,7 +38,7 @@ tags:
 - Function-as-a-Service
 - Serverless
 - Apache
-- Open-Source
+- Open Source
 - Functions
 tags_raw:
 - Cloud Native
@@ -48,6 +48,7 @@ tags_raw:
 - Apache
 - Open Source
 - Functions
+- Open-Source
 created: '2026-03-16'
 modified: '2026-09-16'
 url: https://raw.githubusercontent.com/api-evangelist/apache-openwhisk/refs/heads/main/apis.yml

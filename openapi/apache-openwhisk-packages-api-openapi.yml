@@ -112,17 +112,6 @@ components:
         value:
           description: Parameter value
           example: World
-    EntityRef:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Entity name
-          example: hello
-        annotations:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValue'
     PackageRequest:
       type: object
       properties:
@@ -168,15 +157,18 @@ components:
         updated:
           type: integer
           example: 1718153645993
+    EntityRef:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Entity name
+          example: hello
+        annotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
   parameters:
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      description: OpenWhisk namespace
-      schema:
-        type: string
-        example: guest
     packageName:
       name: packageName
       in: path
@@ -185,6 +177,14 @@ components:
       schema:
         type: string
         example: myPackage
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: OpenWhisk namespace
+      schema:
+        type: string
+        example: guest
   securitySchemes:
     basicAuth:
       type: http

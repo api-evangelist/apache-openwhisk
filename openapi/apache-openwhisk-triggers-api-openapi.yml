@@ -132,16 +132,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    KeyValue:
-      type: object
-      properties:
-        key:
-          type: string
-          description: Parameter key
-          example: name
-        value:
-          description: Parameter value
-          example: World
     ActivationRef:
       type: object
       properties:
@@ -175,6 +165,16 @@ components:
         updated:
           type: integer
           example: 1718153645993
+    KeyValue:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Parameter key
+          example: name
+        value:
+          description: Parameter value
+          example: World
     TriggerRequest:
       type: object
       properties:
@@ -187,14 +187,6 @@ components:
           items:
             $ref: '#/components/schemas/KeyValue'
   parameters:
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      description: OpenWhisk namespace
-      schema:
-        type: string
-        example: guest
     triggerName:
       name: triggerName
       in: path
@@ -203,6 +195,14 @@ components:
       schema:
         type: string
         example: myTrigger
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: OpenWhisk namespace
+      schema:
+        type: string
+        example: guest
   securitySchemes:
     basicAuth:
       type: http
