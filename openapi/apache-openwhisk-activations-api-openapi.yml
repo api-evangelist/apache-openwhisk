@@ -91,16 +91,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    KeyValue:
-      type: object
-      properties:
-        key:
-          type: string
-          description: Parameter key
-          example: name
-        value:
-          description: Parameter value
-          example: World
     ActivationSummary:
       type: object
       properties:
@@ -119,6 +109,28 @@ components:
         end:
           type: integer
           example: 1718153646050
+    ActivationResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Activation status
+          example: success
+          enum:
+          - success
+          - application error
+          - developer error
+          - whisk internal error
+        statusCode:
+          type: integer
+          description: HTTP status code equivalent
+          example: 0
+        success:
+          type: boolean
+          example: true
+        result:
+          type: object
+          description: Action result payload
     Activation:
       type: object
       properties:
@@ -163,28 +175,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValue'
-    ActivationResponse:
+    KeyValue:
       type: object
       properties:
-        status:
+        key:
           type: string
-          description: Activation status
-          example: success
-          enum:
-          - success
-          - application error
-          - developer error
-          - whisk internal error
-        statusCode:
-          type: integer
-          description: HTTP status code equivalent
-          example: 0
-        success:
-          type: boolean
-          example: true
-        result:
-          type: object
-          description: Action result payload
+          description: Parameter key
+          example: name
+        value:
+          description: Parameter value
+          example: World
   parameters:
     namespace:
       name: namespace

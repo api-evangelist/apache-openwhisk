@@ -102,27 +102,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    KeyValue:
-      type: object
-      properties:
-        key:
-          type: string
-          description: Parameter key
-          example: name
-        value:
-          description: Parameter value
-          example: World
-    PackageRequest:
-      type: object
-      properties:
-        annotations:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValue'
-        parameters:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValue'
     Package:
       type: object
       properties:
@@ -168,6 +147,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValue'
+    PackageRequest:
+      type: object
+      properties:
+        annotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+    KeyValue:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Parameter key
+          example: name
+        value:
+          description: Parameter value
+          example: World
   parameters:
     packageName:
       name: packageName

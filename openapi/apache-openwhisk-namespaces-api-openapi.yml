@@ -78,31 +78,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    NamespaceLimits:
-      type: object
-      properties:
-        concurrency:
-          type: integer
-          description: Maximum concurrent activations
-          example: 1000
-        minuteRate:
-          type: integer
-          description: Actions per minute limit
-          example: 600
-        hourRate:
-          type: integer
-          description: Actions per hour limit
-          example: 36000
-    KeyValue:
-      type: object
-      properties:
-        key:
-          type: string
-          description: Parameter key
-          example: name
-        value:
-          description: Parameter value
-          example: World
     EntityRef:
       type: object
       properties:
@@ -114,6 +89,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValue'
+    KeyValue:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Parameter key
+          example: name
+        value:
+          description: Parameter value
+          example: World
     NamespaceEntities:
       type: object
       properties:
@@ -129,6 +114,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EntityRef'
+    NamespaceLimits:
+      type: object
+      properties:
+        concurrency:
+          type: integer
+          description: Maximum concurrent activations
+          example: 1000
+        minuteRate:
+          type: integer
+          description: Actions per minute limit
+          example: 600
+        hourRate:
+          type: integer
+          description: Actions per hour limit
+          example: 36000
   parameters:
     namespace:
       name: namespace
