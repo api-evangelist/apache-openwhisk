@@ -102,6 +102,16 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    KeyValue:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Parameter key
+          example: name
+        value:
+          description: Parameter value
+          example: World
     Package:
       type: object
       properties:
@@ -158,25 +168,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValue'
-    KeyValue:
-      type: object
-      properties:
-        key:
-          type: string
-          description: Parameter key
-          example: name
-        value:
-          description: Parameter value
-          example: World
   parameters:
-    packageName:
-      name: packageName
-      in: path
-      required: true
-      description: Package name
-      schema:
-        type: string
-        example: myPackage
     namespace:
       name: namespace
       in: path
@@ -185,6 +177,14 @@ components:
       schema:
         type: string
         example: guest
+    packageName:
+      name: packageName
+      in: path
+      required: true
+      description: Package name
+      schema:
+        type: string
+        example: myPackage
   securitySchemes:
     basicAuth:
       type: http

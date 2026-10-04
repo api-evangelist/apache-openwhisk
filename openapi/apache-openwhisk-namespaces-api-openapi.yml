@@ -78,17 +78,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    EntityRef:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Entity name
-          example: hello
-        annotations:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValue'
     KeyValue:
       type: object
       properties:
@@ -99,21 +88,6 @@ components:
         value:
           description: Parameter value
           example: World
-    NamespaceEntities:
-      type: object
-      properties:
-        actions:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityRef'
-        triggers:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityRef'
-        rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityRef'
     NamespaceLimits:
       type: object
       properties:
@@ -129,6 +103,32 @@ components:
           type: integer
           description: Actions per hour limit
           example: 36000
+    NamespaceEntities:
+      type: object
+      properties:
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityRef'
+        triggers:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityRef'
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityRef'
+    EntityRef:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Entity name
+          example: hello
+        annotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
   parameters:
     namespace:
       name: namespace

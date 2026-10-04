@@ -128,6 +128,23 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: OpenWhisk namespace
+      schema:
+        type: string
+        example: guest
+    ruleName:
+      name: ruleName
+      in: path
+      required: true
+      description: Rule name
+      schema:
+        type: string
+        example: myRule
   schemas:
     Rule:
       type: object
@@ -172,23 +189,6 @@ components:
           type: string
           description: Action name to invoke
           example: /guest/hello
-  parameters:
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      description: OpenWhisk namespace
-      schema:
-        type: string
-        example: guest
-    ruleName:
-      name: ruleName
-      in: path
-      required: true
-      description: Rule name
-      schema:
-        type: string
-        example: myRule
   securitySchemes:
     basicAuth:
       type: http
