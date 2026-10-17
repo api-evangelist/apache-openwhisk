@@ -101,17 +101,24 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: OpenWhisk namespace
+      schema:
+        type: string
+        example: guest
+    packageName:
+      name: packageName
+      in: path
+      required: true
+      description: Package name
+      schema:
+        type: string
+        example: myPackage
   schemas:
-    KeyValue:
-      type: object
-      properties:
-        key:
-          type: string
-          description: Parameter key
-          example: name
-        value:
-          description: Parameter value
-          example: World
     Package:
       type: object
       properties:
@@ -146,17 +153,6 @@ components:
         updated:
           type: integer
           example: 1718153645993
-    EntityRef:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Entity name
-          example: hello
-        annotations:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValue'
     PackageRequest:
       type: object
       properties:
@@ -168,23 +164,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValue'
-  parameters:
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      description: OpenWhisk namespace
-      schema:
-        type: string
-        example: guest
-    packageName:
-      name: packageName
-      in: path
-      required: true
-      description: Package name
-      schema:
-        type: string
-        example: myPackage
+    EntityRef:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Entity name
+          example: hello
+        annotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+    KeyValue:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Parameter key
+          example: name
+        value:
+          description: Parameter value
+          example: World
   securitySchemes:
     basicAuth:
       type: http

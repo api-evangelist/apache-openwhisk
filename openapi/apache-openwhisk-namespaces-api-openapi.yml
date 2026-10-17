@@ -77,17 +77,16 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      description: OpenWhisk namespace
+      schema:
+        type: string
+        example: guest
   schemas:
-    KeyValue:
-      type: object
-      properties:
-        key:
-          type: string
-          description: Parameter key
-          example: name
-        value:
-          description: Parameter value
-          example: World
     NamespaceLimits:
       type: object
       properties:
@@ -129,15 +128,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValue'
-  parameters:
-    namespace:
-      name: namespace
-      in: path
-      required: true
-      description: OpenWhisk namespace
-      schema:
-        type: string
-        example: guest
+    KeyValue:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Parameter key
+          example: name
+        value:
+          description: Parameter value
+          example: World
   securitySchemes:
     basicAuth:
       type: http
