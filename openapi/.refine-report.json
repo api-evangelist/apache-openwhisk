@@ -1,9 +1,12 @@
 {
   "provider": "apache-openwhisk",
   "sources": [
+    "_original/apache-openwhisk-openapi.json",
     "_ae-authored/apache-openwhisk-rest-api.yaml"
   ],
   "outputs": [
+    "apache-openwhisk-queues-api-openapi.yml",
+    "apache-openwhisk-status-api-openapi.yml",
     "apache-openwhisk-actions-api-openapi.yml",
     "apache-openwhisk-activations-api-openapi.yml",
     "apache-openwhisk-namespaces-api-openapi.yml",
@@ -15,7 +18,8 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "apache-openwhisk-openapi.json: upgraded swagger 2.0 -> OpenAPI 3.2.0",
     "apache-openwhisk-rest-api.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apache-openwhisk-rest-api.yaml: declared missing tag: Actions",
     "apache-openwhisk-rest-api.yaml: declared missing tag: Activations",
@@ -23,7 +27,7 @@
     "apache-openwhisk-rest-api.yaml: declared missing tag: Packages",
     "apache-openwhisk-rest-api.yaml: declared missing tag: Rules",
     "apache-openwhisk-rest-api.yaml: declared missing tag: Triggers",
-    "apis.yml register: already-registered"
+    "apis.yml register: written (+2 apis, 8 total)"
   ],
   "skipped": [
     "apache-openwhisk-actions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
