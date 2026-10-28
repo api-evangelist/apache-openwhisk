@@ -1,4 +1,4 @@
-# Apache OpenWhisk (apache-openwhisk)
+# Apache OpenWhisk
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,130 +66,213 @@
 
 Apache OpenWhisk is an open-source serverless cloud platform that executes functions in response to events at any scale. It supports multiple programming languages and provides a rich programming model for creating serverless APIs and event-driven applications.
 
-**URL:** [https://raw.githubusercontent.com/api-evangelist/apache-openwhisk/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/apache-openwhisk/refs/heads/main/apis.yml)
+**Areas:** Cloud-Native · Event-Driven · Function-as-a-Service · Serverless · Apache · Open Source · Functions
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Apache OpenWhisk on APIs.io
 
-## Tags:
+Everything profiled for Apache OpenWhisk is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/apache-openwhisk/](https://apis.io/providers/apache-openwhisk/)** — or go straight to one of the APIs or properties below.
 
- - Cloud Native, Event-Driven, FaaS, Serverless, Apache, Open Source, Functions
+### APIs (6)
 
-## Timestamps
+- [Apache OpenWhisk Actions API](https://apis.io/apis/apache-openwhisk/apache-openwhisk-actions-api/) — The Actions API from Apache OpenWhisk — 2 operation(s) for actions.
+- [Apache OpenWhisk Activations API](https://apis.io/apis/apache-openwhisk/apache-openwhisk-activations-api/) — The Activations API from Apache OpenWhisk — 2 operation(s) for activations.
+- [Apache OpenWhisk Namespaces API](https://apis.io/apis/apache-openwhisk/apache-openwhisk-namespaces-api/) — The Namespaces API from Apache OpenWhisk — 3 operation(s) for namespaces.
+- [Apache OpenWhisk Packages API](https://apis.io/apis/apache-openwhisk/apache-openwhisk-packages-api/) — The Packages API from Apache OpenWhisk — 2 operation(s) for packages.
+- [Apache OpenWhisk Rules API](https://apis.io/apis/apache-openwhisk/apache-openwhisk-rules-api/) — The Rules API from Apache OpenWhisk — 2 operation(s) for rules.
+- [Apache OpenWhisk Triggers API](https://apis.io/apis/apache-openwhisk/apache-openwhisk-triggers-api/) — The Triggers API from Apache OpenWhisk — 2 operation(s) for triggers.
 
-- **Created:** 2026-03-16
-- **Modified:** 2026-04-19
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Apache OpenWhisk REST API
-The OpenWhisk API provides REST endpoints for managing actions, triggers, rules, packages, and activations, supporting serverless function development in JavaScript, Python, Swift, Java, Go, PHP, and custom Docker runtimes.
+#### Agentic access (1)
 
-**Human URL:** [https://openwhisk.apache.org/documentation.html](https://openwhisk.apache.org/documentation.html)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags:
+- [Apache Openwhisk Agentic Access](https://apis.io/agentic-access/apache-openwhisk/apache-openwhisk-agentic-access/)
 
- - FaaS, Functions, REST, Serverless, Apache, Open Source, Cloud Native
+#### JSON Schema (18)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://openwhisk.apache.org/documentation.html)
-- [OpenAPI](openapi/apache-openwhisk-rest-api.yaml)
+- [Action](https://apis.io/schemas/apache-openwhisk/apache-openwhisk-action/)
+- [ActionExec](https://apis.io/schemas/apache-openwhisk/apache-openwhisk-action-exec/)
+- [ActionLimits](https://apis.io/schemas/apache-openwhisk/apache-openwhisk-action-limits/)
+- [ActionRequest](https://apis.io/schemas/apache-openwhisk/apache-openwhisk-action-request/)
+- [Activation](https://apis.io/schemas/apache-openwhisk/apache-openwhisk-activation/)
+- [ActivationRef](https://apis.io/schemas/apache-openwhisk/apache-openwhisk-activation-ref/)
+- [ActivationResponse](https://apis.io/schemas/apache-openwhisk/apache-openwhisk-activation-response/)
+- [ActivationSummary](https://apis.io/schemas/apache-openwhisk/apache-openwhisk-activation-summary/)
+- [EntityRef](https://apis.io/schemas/apache-openwhisk/apache-openwhisk-entity-ref/)
+- [KeyValue](https://apis.io/schemas/apache-openwhisk/apache-openwhisk-key-value/)
+- [NamespaceEntities](https://apis.io/schemas/apache-openwhisk/apache-openwhisk-namespace-entities/)
+- [NamespaceLimits](https://apis.io/schemas/apache-openwhisk/apache-openwhisk-namespace-limits/)
+- [Package](https://apis.io/schemas/apache-openwhisk/apache-openwhisk-package/)
+- [PackageRequest](https://apis.io/schemas/apache-openwhisk/apache-openwhisk-package-request/)
+- [Rule](https://apis.io/schemas/apache-openwhisk/apache-openwhisk-rule/)
+- [RuleRequest](https://apis.io/schemas/apache-openwhisk/apache-openwhisk-rule-request/)
+- [Trigger](https://apis.io/schemas/apache-openwhisk/apache-openwhisk-trigger/)
+- [TriggerRequest](https://apis.io/schemas/apache-openwhisk/apache-openwhisk-trigger-request/)
 
-## Common Properties
+#### JSON Structure (18)
 
-- [GitHubOrganization](https://github.com/apache/openwhisk)
+Data models expressed in JSON Structure.
+
+- [Apache Openwhisk Action Exec Structure](https://apis.io/json-structure/apache-openwhisk/apache-openwhisk-action-exec-structure/)
+- [Apache Openwhisk Action Limits Structure](https://apis.io/json-structure/apache-openwhisk/apache-openwhisk-action-limits-structure/)
+- [Apache Openwhisk Action Request Structure](https://apis.io/json-structure/apache-openwhisk/apache-openwhisk-action-request-structure/)
+- [Apache Openwhisk Action Structure](https://apis.io/json-structure/apache-openwhisk/apache-openwhisk-action-structure/)
+- [Apache Openwhisk Activation Ref Structure](https://apis.io/json-structure/apache-openwhisk/apache-openwhisk-activation-ref-structure/)
+- [Apache Openwhisk Activation Response Structure](https://apis.io/json-structure/apache-openwhisk/apache-openwhisk-activation-response-structure/)
+- [Apache Openwhisk Activation Structure](https://apis.io/json-structure/apache-openwhisk/apache-openwhisk-activation-structure/)
+- [Apache Openwhisk Activation Summary Structure](https://apis.io/json-structure/apache-openwhisk/apache-openwhisk-activation-summary-structure/)
+- [Apache Openwhisk Entity Ref Structure](https://apis.io/json-structure/apache-openwhisk/apache-openwhisk-entity-ref-structure/)
+- [Apache Openwhisk Key Value Structure](https://apis.io/json-structure/apache-openwhisk/apache-openwhisk-key-value-structure/)
+- [Apache Openwhisk Namespace Entities Structure](https://apis.io/json-structure/apache-openwhisk/apache-openwhisk-namespace-entities-structure/)
+- [Apache Openwhisk Namespace Limits Structure](https://apis.io/json-structure/apache-openwhisk/apache-openwhisk-namespace-limits-structure/)
+- [Apache Openwhisk Package Request Structure](https://apis.io/json-structure/apache-openwhisk/apache-openwhisk-package-request-structure/)
+- [Apache Openwhisk Package Structure](https://apis.io/json-structure/apache-openwhisk/apache-openwhisk-package-structure/)
+- [Apache Openwhisk Rule Request Structure](https://apis.io/json-structure/apache-openwhisk/apache-openwhisk-rule-request-structure/)
+- [Apache Openwhisk Rule Structure](https://apis.io/json-structure/apache-openwhisk/apache-openwhisk-rule-structure/)
+- [Apache Openwhisk Trigger Request Structure](https://apis.io/json-structure/apache-openwhisk/apache-openwhisk-trigger-request-structure/)
+- [Apache Openwhisk Trigger Structure](https://apis.io/json-structure/apache-openwhisk/apache-openwhisk-trigger-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Apache Openwhisk Context](https://apis.io/jsonld/apache-openwhisk/apache-openwhisk-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Apache Openwhisk Vocabulary](https://apis.io/vocabularies/apache-openwhisk/apache-openwhisk-vocabulary/)
+
+#### Examples (18)
+
+Example requests and responses.
+
+- [Apache Openwhisk Action Example](https://apis.io/examples/apache-openwhisk/apache-openwhisk-action-example/)
+- [Apache Openwhisk Action Exec Example](https://apis.io/examples/apache-openwhisk/apache-openwhisk-action-exec-example/)
+- [Apache Openwhisk Action Limits Example](https://apis.io/examples/apache-openwhisk/apache-openwhisk-action-limits-example/)
+- [Apache Openwhisk Action Request Example](https://apis.io/examples/apache-openwhisk/apache-openwhisk-action-request-example/)
+- [Apache Openwhisk Activation Example](https://apis.io/examples/apache-openwhisk/apache-openwhisk-activation-example/)
+- [Apache Openwhisk Activation Ref Example](https://apis.io/examples/apache-openwhisk/apache-openwhisk-activation-ref-example/)
+- [Apache Openwhisk Activation Response Example](https://apis.io/examples/apache-openwhisk/apache-openwhisk-activation-response-example/)
+- [Apache Openwhisk Activation Summary Example](https://apis.io/examples/apache-openwhisk/apache-openwhisk-activation-summary-example/)
+- [Apache Openwhisk Entity Ref Example](https://apis.io/examples/apache-openwhisk/apache-openwhisk-entity-ref-example/)
+- [Apache Openwhisk Key Value Example](https://apis.io/examples/apache-openwhisk/apache-openwhisk-key-value-example/)
+- [Apache Openwhisk Namespace Entities Example](https://apis.io/examples/apache-openwhisk/apache-openwhisk-namespace-entities-example/)
+- [Apache Openwhisk Namespace Limits Example](https://apis.io/examples/apache-openwhisk/apache-openwhisk-namespace-limits-example/)
+- [Apache Openwhisk Package Example](https://apis.io/examples/apache-openwhisk/apache-openwhisk-package-example/)
+- [Apache Openwhisk Package Request Example](https://apis.io/examples/apache-openwhisk/apache-openwhisk-package-request-example/)
+- [Apache Openwhisk Rule Example](https://apis.io/examples/apache-openwhisk/apache-openwhisk-rule-example/)
+- [Apache Openwhisk Rule Request Example](https://apis.io/examples/apache-openwhisk/apache-openwhisk-rule-request-example/)
+- [Apache Openwhisk Trigger Example](https://apis.io/examples/apache-openwhisk/apache-openwhisk-trigger-example/)
+- [Apache Openwhisk Trigger Request Example](https://apis.io/examples/apache-openwhisk/apache-openwhisk-trigger-request-example/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [Apache OpenWhisk REST Actions API](https://apis.io/collections/apache-openwhisk/open-apache-openwhisk-actions-api/)
+- [Apache OpenWhisk REST Actions Activations API](https://apis.io/collections/apache-openwhisk/open-apache-openwhisk-activations-api/)
+- [Apache OpenWhisk REST Actions Namespaces API](https://apis.io/collections/apache-openwhisk/open-apache-openwhisk-namespaces-api/)
+- [Apache OpenWhisk REST Actions Packages API](https://apis.io/collections/apache-openwhisk/open-apache-openwhisk-packages-api/)
+- [Apache OpenWhisk REST Actions Rules API](https://apis.io/collections/apache-openwhisk/open-apache-openwhisk-rules-api/)
+- [Apache OpenWhisk REST Actions Triggers API](https://apis.io/collections/apache-openwhisk/open-apache-openwhisk-triggers-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Apache OpenWhisk — jsonschema rules](https://apis.io/rules/apache-openwhisk/apache-openwhisk-jsonschema-spectral-rules/)
+- [Apache OpenWhisk API Rules](https://apis.io/rules/apache-openwhisk/apache-openwhisk-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Apache Openwhisk Authentication](https://apis.io/security/apache-openwhisk/apache-openwhisk-authentication/)
+- [Apache Openwhisk Domain Security](https://apis.io/security/apache-openwhisk/apache-openwhisk-domain-security/)
+- [Apache Openwhisk Vulnerability Disclosure](https://apis.io/security/apache-openwhisk/apache-openwhisk-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Apache Openwhisk Plans Pricing](https://apis.io/plans/apache-openwhisk/apache-openwhisk-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Apache Openwhisk Rate Limits](https://apis.io/rate-limits/apache-openwhisk/apache-openwhisk-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Apache Openwhisk Finops](https://apis.io/finops/apache-openwhisk/apache-openwhisk-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://apache.org)
 - [Documentation](https://openwhisk.apache.org/)
-- [SpectralRules](rules/apache-openwhisk-spectral-rules.yml)
-- [Vocabulary](vocabulary/apache-openwhisk-vocabulary.yaml)
-- [NaftikoCapability](capabilities/serverless-workflow.yaml)
-- [JSON-LD](json-ld/apache-openwhisk-context.jsonld)
+- [GitHub](https://github.com/apache/openwhisk)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| Serverless Functions | Execute stateless functions in response to events without managing infrastructure |
-| Multi-Language Support | Supports Node.js, Python, Java, Go, PHP, Ruby, Swift, and custom Docker runtimes |
-| Event Triggers | Named event channels that fire actions based on external events |
-| Action Sequences | Compose multiple actions into sequential pipelines |
-| Package System | Pre-built integrations via /whisk.system namespace |
-| REST API | Full REST API for managing all platform resources programmatically |
-| Docker Actions | Custom runtime support via Docker containers for any language |
+**Kin Score 25.6** — emerging · rubric 0.24.0 · scored 2026-10-17
 
-## Use Cases
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 20.5 |
+| Contract governance | 27.3 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 21.4 |
+| Access clarity | 7.9 |
 
-| Name | Description |
-|------|-------------|
-| Event-Driven Microservices | Build loosely coupled microservices that respond to events |
-| IoT Data Processing | Process sensor and device events at scale without infrastructure management |
-| API Backend | Create REST APIs backed by serverless functions |
-| Scheduled Tasks | Run periodic jobs using alarm triggers |
-| Chatbots & Webhooks | Handle Slack, GitHub, and other webhook events |
+**Agent readiness 20.4** — agent-aware
 
-## Integrations
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-| Name | Description |
-|------|-------------|
-| Slack | Respond to Slack events and slash commands |
-| GitHub | Automate workflows based on GitHub repository events |
-| Apache Kafka | Process Kafka message stream events |
-| Cloudant | React to CouchDB/Cloudant database changes |
-| IBM Cloud | Available as IBM Cloud Functions on IBM Cloud |
-| Kubernetes | Deploy OpenWhisk on Kubernetes using Helm charts |
+**Regulatory alignment 22.5** — Horizontal (data, software, accessibility, platform)
 
-## Artifacts
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/apache-openwhisk/](https://apis.io/providers/apache-openwhisk/).
 
-Machine-readable API specifications organized by format.
+## How this profile is made
 
-### OpenAPI
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-- [Apache OpenWhisk REST API](openapi/apache-openwhisk-rest-api.yaml)
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Apache OpenWhisk: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-### JSON Schema
+## Open an issue
 
-- [Action](json-schema/apache-openwhisk-action-schema.json)
-- [Trigger](json-schema/apache-openwhisk-trigger-schema.json)
-- [Rule](json-schema/apache-openwhisk-rule-schema.json)
-- [Package](json-schema/apache-openwhisk-package-schema.json)
-- [Activation](json-schema/apache-openwhisk-activation-schema.json)
-- [And more...](json-schema/)
-
-### JSON Structure
-
-- [Apache OpenWhisk JSON Structures](json-structure/)
-
-### JSON-LD
-
-- [Apache OpenWhisk Context](json-ld/apache-openwhisk-context.jsonld)
-
-### Examples
-
-- [Apache OpenWhisk Examples](examples/)
-
-## Capabilities
-
-Naftiko capabilities organized as shared per-API definitions composed into customer-facing workflows.
-
-### Shared Per-API Definitions
-
-- [OpenWhisk REST API](capabilities/shared/openwhisk-rest-api.yaml) — Core REST API operations for serverless management
-
-### Workflow Capabilities
-
-| Workflow | APIs Combined | Tools | Persona |
-|----------|--------------|-------|---------|
-| [Serverless Workflow](capabilities/serverless-workflow.yaml) | OpenWhisk | 10 | DevOps Engineer, Backend Developer, Platform Administrator |
-
-## Vocabulary
-
-- [Apache OpenWhisk Vocabulary](vocabulary/apache-openwhisk-vocabulary.yaml) — Unified taxonomy mapping serverless resources, actions, workflows, and personas
-
-## Rules
-
-- [Apache OpenWhisk Spectral Rules](rules/apache-openwhisk-spectral-rules.yml) — 10 rules enforcing Apache OpenWhisk API conventions
-
-## Maintainers
-
-**FN:** Kin Lane
-
-**Email:** info@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/apache-openwhisk/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
